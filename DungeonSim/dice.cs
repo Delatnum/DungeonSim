@@ -22,7 +22,7 @@ public class Dice
 
         for (int i = 0; i < numOfDice; i++) 
         { 
-            val += rnd.Next(1, sizeOfDice);
+            val += rnd.Next(1, (sizeOfDice + 1));
         }
 
         return val;

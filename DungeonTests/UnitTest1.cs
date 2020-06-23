@@ -92,14 +92,14 @@ namespace DungeonTests
         [TestMethod]
         public void checkIfRanged()
         {
-            Weapon aBow = new Weapon("longbow", "1d8", "slashing");
+            Weapon aBow = new Weapon("longbow", "1d8", "piercing");
             aBow.setRanged(20, 60);
 
             for (int i = 0; i < 10; i++)
             {
                 int[] results = aBow.calcDamage();
                 // Check Slashing
-                Assert.IsTrue(results[11] == 1 || results[11] == 2 || results[11] == 3 || results[11] == 4 || results[11] == 5 || results[11] == 6 || results[11] == 7 || results[11] == 8, "Weapon Calculation values incorrect");
+                Assert.IsTrue(results[7] == 1 || results[7] == 2 || results[7] == 3 || results[7] == 4 || results[7] == 5 || results[7] == 6 || results[7] == 7 || results[7] == 8, "Weapon Calculation values incorrect");
             }
 
             Assert.IsTrue(aBow.isRanged());
@@ -107,6 +107,65 @@ namespace DungeonTests
             aBow.setMelee();
 
             Assert.IsFalse(aBow.isRanged());
+        }
+
+        [TestMethod]
+        public void testFighterSaves()
+        {
+            Weapon aSword = new Weapon("longsword", "1d8", "slashing");
+            Weapon aBow = new Weapon("longbow", "1d8", "piercing");
+            aBow.setRanged(20, 60);
+
+            Fighter Kenny = new Fighter(16,14,15,11,12,10, 30, aSword, aBow);
+
+            double saves = 0;
+            double fails = 0;
+            // an impossible save (Only a crit would work 5% chance)
+            for (int i = 0; i < 500; i++) 
+            {
+                if (Kenny.saves("DEX", 1000))
+                {
+                    saves++;
+                }
+                else 
+                {
+                    fails++;
+                }
+            }
+            double saveRate = saves / (fails + saves);
+             Assert.IsTrue(saveRate < 0.07);
+            Assert.IsTrue(saveRate > 0.03); 
+
+        }
+
+        [TestMethod]
+        public void testBasicMonster()
+        {
+            Weapon aSword = new Weapon("shortsword", "1d6", "slashing");
+            Weapon aBow = new Weapon("shortbow", "1d6", "piercing");
+            aBow.setRanged(20, 60);
+
+            BasicMonster SkeletonOne = new BasicMonster(16, 14, 15, 11, 12, 10, 30, 13, aSword, aBow);
+
+
+            Assert.IsFalse(SkeletonOne.immunities[6]);
+            SkeletonOne.setImmunities("necrotic", true);
+            Assert.IsTrue(SkeletonOne.immunities[6]);
+            SkeletonOne.setImmunities("poison", false);
+            Assert.IsFalse(SkeletonOne.resistances[6]);
+
+            Assert.IsFalse(SkeletonOne.resistances[8]);
+            SkeletonOne.setResistance("poison", true);
+            Assert.IsTrue(SkeletonOne.resistances[8]);
+            SkeletonOne.setResistance("poison", false);
+            Assert.IsFalse(SkeletonOne.resistances[8]);
+
+            Assert.IsFalse(SkeletonOne.vulnerabilites[1]);
+            SkeletonOne.setVulnerabilites("bludgeoning", true);
+            Assert.IsTrue(SkeletonOne.vulnerabilites[1]);
+            SkeletonOne.setVulnerabilites("bludgeoning", false);
+            Assert.IsFalse(SkeletonOne.vulnerabilites[1]);
+
         }
     }
 }
