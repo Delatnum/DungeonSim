@@ -5,11 +5,11 @@ using System;
     Testing for DungeonSim
      */
 namespace DungeonTests
-{
-    
+{    
     [TestClass]
     public class UnitTests
     {
+        Dice d1 = new Dice();
         /*
         
                 DICE TESTING
