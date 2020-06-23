@@ -255,7 +255,6 @@ public class Fighter : Combatant
                     break;
                 default:
                     throw new Exception("Failure to enter a save type");
-                    break;
             }
             dodgin = false;
             if (indominatableRankOne || indominatableRankTwo || indominatableRankThree) 
