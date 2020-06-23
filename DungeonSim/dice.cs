@@ -4,7 +4,7 @@ public class Dice
 {
     /*
         rolls dice as a string input <n1>d<n2> where n1 is the number of dice, n2 is the number of faces on the dice and D is a delimitter 
-         */
+    */
     public Dice() 
     { 
     
