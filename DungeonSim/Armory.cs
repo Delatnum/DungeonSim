@@ -20,4 +20,26 @@ public class Armory
 
     // making a hit using a quarterstaff with both hands does 1d8 damage
     public int quarterstaff2h(){return rnd.Next(1, 9);}
+
+    // making a hit using a battleaxe with one hand does 1d8 damage
+    public int battleaxe1h() { return rnd.Next(1, 9); }
+
+    // making a hit using a battleaxe with both hands does 1d10 damage
+    public int battleaxe2h() { return rnd.Next(1, 11); }
+
+    // making a hit using a glaive does 1d10 damage
+    public int glaive() { return rnd.Next(1, 11); }
+
+    // making a hit using a halberd with both hands does 1d10 damage
+    public int halberd() { return rnd.Next(1, 11); }
+
+    // making a hit using a lance with both hands does 1d12 damage
+    public int lance() { return rnd.Next(1, 13); }
+
+    // making a hit using a morningstar does 1d8 damage
+    public int morningstar() { return rnd.Next(1, 9); }
+
+    // making a hit using a maul does 2d6 damage
+    public int maul() { return (rnd.Next(1, 7) + rnd.Next(1, 7)); }
+
 }
