@@ -11,6 +11,10 @@ public class Weapon
 	public string[] magicDamage = { };
 	public string[] magicType = { };
 
+	public int range = 0; // assume 0 for melee
+	public int disAdvRange = 0; // if ranged disAdvRange is the range where the character loses accuracy and must with disadvantage to hit (roll a d20 twice and take the lower of the two).
+	public bool ranged = false;
+
 	Dice diceTower = new Dice();
 
 	/*
@@ -161,5 +165,30 @@ public class Weapon
 		}
 
 		return overallDmg;
+	}
+	/*
+		Make this a ranged weapon with ranged value types
+	*/
+	public void setRanged(int optimal, int possible) 
+	{
+		range = optimal;
+		disAdvRange = possible;
+		ranged = true;
+	}
+	/*
+		Revert this weapon back to melee values
+	*/
+	public void setMelee() 
+	{
+		range = 0;
+		disAdvRange = 0;
+		ranged = false;
+	}
+	/*
+		Check this weapon is ranged	
+	*/
+	public bool isRanged() 
+	{
+		return ranged;
 	}
 }

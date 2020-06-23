@@ -5,7 +5,7 @@ using System;
     Testing for DungeonSim
      */
 namespace DungeonTests
-{    
+{
     [TestClass]
     public class UnitTests
     {
@@ -18,7 +18,7 @@ namespace DungeonTests
         [TestMethod]
         public void checkDice()
         {
-            for (int i = 0; i < 50; i++) 
+            for (int i = 0; i < 50; i++)
             {
                 int res = d1.roll("1d6");
 
@@ -41,12 +41,13 @@ namespace DungeonTests
             /*
                 Test with valid types
              */
-            string[] mgcDamage = {"1d4", "1d4"};
+            string[] mgcDamage = { "1d4", "1d4" };
             string[] mgcType = { "cold", "necrotic" };
 
             Weapon swordOf1000Truths = new Weapon("The Sword of a thousand Truths", "1d8", "slashing", mgcDamage, mgcType);
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10; i++)
+            {
                 int[] results = swordOf1000Truths.calcDamage();
                 // Check Slashing
                 Assert.IsTrue(results[11] == 1 || results[11] == 2 || results[11] == 3 || results[11] == 4 || results[11] == 5 || results[11] == 6 || results[11] == 7 || results[11] == 8, "Weapon Calculation values incorrect");
@@ -86,6 +87,26 @@ namespace DungeonTests
                 // Check Slashing
                 Assert.IsTrue(results[11] == 1 || results[11] == 2 || results[11] == 3 || results[11] == 4 || results[11] == 5 || results[11] == 6 || results[11] == 7 || results[11] == 8, "Weapon Calculation values incorrect");
             }
+        }
+
+        [TestMethod]
+        public void checkIfRanged()
+        {
+            Weapon aBow = new Weapon("longbow", "1d8", "slashing");
+            aBow.setRanged(20, 60);
+
+            for (int i = 0; i < 10; i++)
+            {
+                int[] results = aBow.calcDamage();
+                // Check Slashing
+                Assert.IsTrue(results[11] == 1 || results[11] == 2 || results[11] == 3 || results[11] == 4 || results[11] == 5 || results[11] == 6 || results[11] == 7 || results[11] == 8, "Weapon Calculation values incorrect");
+            }
+
+            Assert.IsTrue(aBow.isRanged());
+
+            aBow.setMelee();
+
+            Assert.IsFalse(aBow.isRanged());
         }
     }
 }

@@ -12,7 +12,10 @@ public class Fighter
 
     int[] stats = { 0, 0, 0, 0, 0, 0 }; // Character Stats in index order, Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma
 
-    public Fighter(int STR, int DEX, int CON, int INT, int WIS, int CHA) 
+    Weapon primaryWeapon;
+    Weapon secondaryWeapon;
+
+    public Fighter(int STR, int DEX, int CON, int INT, int WIS, int CHA, Weapon _primary, Weapon _secondary) 
     {
         /*
             Note: an average civilian has a value of 10, (an intelligence value of 8 implies stupidity 12 implies cleverness)
@@ -23,5 +26,8 @@ public class Fighter
         stats[0] = INT;
         stats[0] = WIS;
         stats[0] = CHA;
+
+        primaryWeapon = _primary;
+        secondaryWeapon = _secondary;
     }
 }
