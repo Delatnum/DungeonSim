@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSim", "DungeonSim\DungeonSim.csproj", "{DBC60F85-6349-4756-B139-CC97D3018E9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonTests", "DungeonTests\DungeonTests.csproj", "{B2181436-A23A-475D-B856-875591286515}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DBC60F85-6349-4756-B139-CC97D3018E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBC60F85-6349-4756-B139-CC97D3018E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBC60F85-6349-4756-B139-CC97D3018E9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2181436-A23A-475D-B856-875591286515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2181436-A23A-475D-B856-875591286515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2181436-A23A-475D-B856-875591286515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2181436-A23A-475D-B856-875591286515}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace DungeonSim
 {
-    public partial class Form1 : Form
+    public partial class DungeonSimBox : Form
     {
-        public Form1()
+        public DungeonSimBox()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
