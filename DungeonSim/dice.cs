@@ -13,6 +13,7 @@ public class Dice
     public int roll(string inString) 
     {
         int val = 0;
+        System.Threading.Thread.Sleep(0); // Notes: if this is not here Random gets the same clock time and generates the same number over and over again
         Random rnd = new Random() ; 
 
         var diceNums = inString.Split('d');

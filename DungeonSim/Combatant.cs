@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Combatant
+public class Combatant : IComparable<Combatant>
 {
     // Resistances
     public bool[] resistances = { false, false, false, false, false, false, false, false, false, false, false, false, false };
@@ -26,10 +26,12 @@ public class Combatant
 
     public int hpmax;
     public int curHp;
+    public int curIniative; // The current iniative of the combatant
 
     // Status
     public bool isDead = false;
     public bool isUnconcious = false;
+    public bool isFriendly = false;
 
     // DeathFails and saves for heroes/bosses
     public int deathSaves = 0;
@@ -318,12 +320,32 @@ public class Combatant
 
 
     /*
-        Roll initiative 
+        Roll initiative - returns the value rolled + the DEX modifier
     */
 
     public int rollInit()
     {
         Dice diceTower = new Dice();
-        return diceTower.roll("1d20" + ((stats[1] - 10) / 2));
+        curIniative = diceTower.roll("1d20" + ((stats[1] - 10) / 2));
+        return curIniative;
+    }
+
+    /*
+        set the friendly status of a combatant
+    */
+
+    public void setAlly(bool status)
+    {
+        isFriendly = status;
+    }
+    /*
+     
+        Comparator based on iniative (higher initiative is a higher priority (more likely to be the zero index))
+
+     */
+    public int CompareTo(Combatant other)
+    {
+        return other.curIniative - this.curIniative;
     }
 }
+

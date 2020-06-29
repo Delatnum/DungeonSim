@@ -6,9 +6,6 @@
      */
 public class Fighter : Combatant
 {
-    // Action status (reset to true when a round ends)
-    public bool bonusAction = true;
-    public bool reaction = true;
 
     // Fighter special actions
 
@@ -199,8 +196,6 @@ public class Fighter : Combatant
 
         while (dodgin) 
         {
-
-            System.Threading.Thread.Sleep(0); // Notes: if this is not here Random gets the same clock time and generates the same number over and over again
 
             int roll = (diceTower.roll("1d20"));
 
@@ -400,7 +395,6 @@ public class Fighter : Combatant
      */
     public void runUnconcious() 
     {
-        System.Threading.Thread.Sleep(0); // Notes: if this is not here Random gets the same clock time and generates the same number over and over again
         Dice diceTower = new Dice();
         int roll = (diceTower.roll("1d20"));
 
