@@ -18,7 +18,7 @@ class RoundCalcer
     }
     
     /*
-        Calculates overall damage, returns the damage as a sum for one side. TODO: calculate combat results
+        Calculates overall damage, returns the damage as a sum for one side. Negative if the hostiles win, Posative if the allies win. TODO: calculate combat results
     */
     public int damageCalculator()
     {
@@ -36,6 +36,9 @@ class RoundCalcer
             combatantArray[indexer] = c;
             indexer++;
         }
+
+        int allyDamage = 0;
+        int enemyDamage = 0;
 
         Array.Sort(combatantArray);
         /*
