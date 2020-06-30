@@ -43,6 +43,7 @@ namespace DungeonSim
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,6 +181,15 @@ namespace DungeonSim
             this.label6.TabIndex = 16;
             this.label6.Text = "Probabilities Plot (More specific later)";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(326, 435);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Simulate Turn";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // DungeonSimBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -187,6 +197,7 @@ namespace DungeonSim
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1535, 837);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -230,6 +241,7 @@ namespace DungeonSim
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
     }
 }
 
