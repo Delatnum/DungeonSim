@@ -60,19 +60,37 @@
     <Compile Include="Combatant.cs" />
     <Compile Include="dice.cs" />
     <Compile Include="Fighter.cs" />
-    <Compile Include="DungeonSimBox.cs">
+    <Compile Include="forms\DungeonSimBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DungeonSimBox.Designer.cs">
+    <Compile Include="forms\DungeonSimBox.Designer.cs">
       <DependentUpon>DungeonSimBox.cs</DependentUpon>
     </Compile>
     <Compile Include="BasicMonster.cs" />
+    <Compile Include="forms\AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\WelcomePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\WelcomePopup.Designer.cs">
+      <DependentUpon>WelcomePopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundCalcer.cs" />
     <Compile Include="Weapons.cs" />
-    <EmbeddedResource Include="DungeonSimBox.resx">
+    <EmbeddedResource Include="forms\AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\DungeonSimBox.resx">
       <DependentUpon>DungeonSimBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\WelcomePopup.resx">
+      <DependentUpon>WelcomePopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,6 +100,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -96,6 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\DnD5e-Banner.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

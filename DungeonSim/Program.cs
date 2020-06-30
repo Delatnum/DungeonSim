@@ -29,6 +29,7 @@ namespace DungeonSim
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DungeonSimBox());
+            
         }
     }
 }

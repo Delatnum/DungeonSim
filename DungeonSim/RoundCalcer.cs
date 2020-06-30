@@ -9,7 +9,7 @@ class RoundCalcer
 {
     public List<Combatant> Combatants = new List<Combatant>();
     /*
-        pupulate combatants for fight
+        populate combatants for fight
         */
 
     public RoundCalcer()

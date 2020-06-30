@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DungeonSim
+namespace DungeonSim.forms
 {
-    public partial class DungeonSimBox : Form
+    public partial class AddForm : Form
     {
-        public DungeonSimBox()
+        public AddForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
