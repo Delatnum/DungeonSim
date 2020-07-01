@@ -19,7 +19,6 @@ Definitely the easiest way to run the program. To set it up for building and run
 <ol>
   <li>Follow the instructions in this link to download mono: https://www.mono-project.com/download/stable/#download-lin</li>
 </ol>
-This should run the program, but we will add the steps for the development environment
 
 <h2 align="center">Setup for macOS</h2>
 <p align="center">**This section is a work in progress**</p>
