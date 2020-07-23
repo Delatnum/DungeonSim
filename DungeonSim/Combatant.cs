@@ -12,7 +12,7 @@ public class Combatant : IComparable<Combatant>
     public bool[] vulnerabilites = { false, false, false, false, false, false, false, false, false, false, false, false, false };
 
     // Stats
-    public int[] stats = { 0, 0, 0, 0, 0, 0 };
+    public int[] stats = { 0, 0, 0, 0, 0, 0 }; // STR, DEX, CON, INT, WIS, CHA
     public int movement = 30;
     public int AC;
 
@@ -269,10 +269,10 @@ public class Combatant : IComparable<Combatant>
     }
 
     /*
-        Default damage taken algorthim, note that heroes and bosses may have additional effects. 
+        Default damage taken algorthim, note that heroes and bosses may have additional effects. Return the amount of damage the Combatant actually took
     */
 
-    public void takeDamage(int[] incomingDamage)
+    public int takeDamage(int[] incomingDamage)
     {
         int totalDamage = 0;
 
@@ -303,6 +303,8 @@ public class Combatant : IComparable<Combatant>
             curHp = 0;
             isUnconcious = true;
         }
+
+        return totalDamage;
     }
 
 
@@ -338,14 +340,46 @@ public class Combatant : IComparable<Combatant>
     {
         isFriendly = status;
     }
+
     /*
      
         Comparator based on iniative (higher initiative is a higher priority (more likely to be the zero index))
+        Dexterity is the tie breaker, in the even that they are the same order does not matter.
 
      */
     public int CompareTo(Combatant other)
     {
-        return other.curIniative - this.curIniative;
+        if (other.curIniative - this.curIniative == 0)
+        {
+            return other.stats[1] - this.stats[1];
+        }
+        else
+        {
+            return other.curIniative - this.curIniative;
+        }
+    }
+    /*
+        sample save n number of times to get an approximate chance of success. Returns a double represting the chance of saving.
+     */
+    public double sampleSaves(int n, string saveType, int saveDC)
+    {
+        int saves = 0;
+        for (int x = 0; x < n; x++)
+        {
+            if (this.saves(saveType, saveDC))
+            {
+                saves++;
+            }
+        }
+        return (saves / n);
+    }
+    /*
+        CalcRound method, returns an array of zeroes unless a child class uses the method.
+     */
+    public int[] calcRound(int targetAC, int rangeToTarget)
+    {
+        int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        return damageDone;
     }
 }
 

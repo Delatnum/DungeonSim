@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms.DataVisualization.Charting;
 
 class RoundCalcer
 {
+    public int allyHP = 0;
+    public int enemyHP = 0;
+
+    public int allyMaxHp = 0;
+    public int enemyMaxHP = 0;
+
     public List<Combatant> Combatants = new List<Combatant>();
     /*
         populate combatants for fight
@@ -14,7 +20,6 @@ class RoundCalcer
 
     public RoundCalcer()
     {
-
     }
     
     /*
@@ -23,6 +28,8 @@ class RoundCalcer
     public int damageCalculator()
     {
         Combatant[] combatantArray = new Combatant[Combatants.Count];
+        Combatant[] listAllies = new Combatant[Combatants.Count];
+        Combatant[] listEnemies = new Combatant[Combatants.Count];
 
         int enemies = 1;
         int allies = 1;
@@ -37,8 +44,7 @@ class RoundCalcer
             indexer++;
         }
 
-        int allyDamage = 0;
-        int enemyDamage = 0;
+        
 
         Array.Sort(combatantArray);
         /*
@@ -66,7 +72,6 @@ class RoundCalcer
                     }
                 }
             }
-            // Proceed to calculate a round
 
         }
 
@@ -75,10 +80,12 @@ class RoundCalcer
     }
 
     /*
-        Add a user to the combat
+        Add a Combatant to the combat Note: if there are no enemies or allies one side will automatically win
+        if the ally is == true the combatant will be considered ally.
     */
-    public void addCombatant(Combatant c)
+    public void addCombatant(Combatant c, bool ally)
     {
+        c.setAlly(ally);
         Combatants.Add(c);
     }
 }
