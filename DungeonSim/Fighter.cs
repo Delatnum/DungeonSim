@@ -299,7 +299,7 @@ public class Fighter : Combatant
         {
             indominatableRankOne = true; // Allows the reroll of a save once per long rest
         }
-
+        curHp = hpmax;
     }
 
     /*

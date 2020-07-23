@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -242,5 +243,61 @@ class RoundCalcer
         c.setAlly(ally);
         Combatants.Add(c);
     }
+
+    /*
+        get the parties health as a double representing the percentage
+    */
+    public double partyPercent()
+    {
+        double MaxHp = 0;
+        double curHp = 0;
+
+        foreach (Combatant c in Combatants) 
+        {
+            if (c.isFriendly) 
+            {
+                MaxHp += c.hpmax;
+                curHp += c.curHp;
+            }
+        }
+
+        return curHp / MaxHp;
+    }
+
+    /*
+        get the enemies health as a double representing the percentage
+    */
+    public double monsterPercent()
+    {
+        double MaxHp = 0;
+        double curHp = 0;
+
+        foreach (Combatant c in Combatants)
+        {
+            if (!c.isFriendly)
+            {
+                MaxHp += c.hpmax;
+                curHp += c.curHp;
+            }
+        }
+
+        return curHp / MaxHp;
+    }
+
+    /*
+        Refresh Combatants (Restores the dead too!)
+     */
+    public void restoreAll()
+    {
+
+        foreach (Combatant c in Combatants)
+        {
+            c.isDead = false;
+            c.isUnconcious = false;
+            c.longRest();
+        }
+
+    }
 }
+
 

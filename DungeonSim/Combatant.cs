@@ -385,5 +385,13 @@ public class Combatant : IComparable<Combatant>
         int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         return damageDone;
     }
+
+    /*
+       resets the approriate attributes for a long rest (6+ hour rest in game)
+    */
+    public void longRest()
+    {
+        curHp = hpmax;
+    }
 }
 
