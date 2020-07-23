@@ -38,11 +38,20 @@ public class BasicMonster : Combatant
 
    */
 
-    public int[] calcRound(int targetAC, int rangeToTarget)
+    public int[] calcRound(Combatant c)
     {
+        // Basic Monsters don't get death saves and automatically die unless the DM says otherwise or the group is roleplaying a capture scenario
+        if (isUnconcious) 
+        {
+            isDead = isUnconcious;
+        }
+
         int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        if (curHp <= 0) 
+        /*
+            Return zero damage if dead
+         */
+        if (isDead) 
         {
             curHp = 0;
             return damageDone;
@@ -53,7 +62,7 @@ public class BasicMonster : Combatant
         while (action)
         {
             // if out of range move closer
-            if (rangeToTarget > (movement))
+            if (rangeToFocus > (movement))
             {
                 if (primaryWeapon.isRanged())
                 {
@@ -102,7 +111,7 @@ public class BasicMonster : Combatant
                         damageDone[i] += damageHit[i];
                     }
                 }
-                else if (targetAC <= (roll + ((stats[0]) - 10) / 2))
+                else if (c.AC <= (roll + ((stats[0]) - 10) / 2))
                 {
                     if (primaryWeapon == null)
                     {

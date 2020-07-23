@@ -51,7 +51,7 @@ public class Fighter : Combatant
          
     */
 
-    public int[] calcRound(int targetAC, int rangeToTarget)
+    public int[] calcRound(Combatant c)
     {
 
         int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -72,12 +72,12 @@ public class Fighter : Combatant
         // Assumed actions during a round
         while (action || bonusAction) {
             // if out of range move closer
-            if (rangeToTarget > (2 * movement))
+            if (rangeToFocus > (2 * movement))
             {
-                rangeToTarget -= (movement * 2);
-                if (rangeToTarget < 0) 
+                rangeToFocus -= (movement * 2);
+                if (rangeToFocus < 0) 
                 {
-                    rangeToTarget = 0;
+                    rangeToFocus = 0;
                 }
                 action = false; // action used to move double speed
             }
@@ -108,7 +108,7 @@ public class Fighter : Combatant
                         damageDone[i] += damageHit[i];
                     }
                 } 
-                else if (targetAC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus)) 
+                else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus)) 
                 {
                     if (primaryWeapon == null)
                     {
@@ -149,7 +149,7 @@ public class Fighter : Combatant
                             damageDone[i] += damageHit[i];
                         }
                     }
-                    else if (targetAC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
+                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
                     {
                         if (primaryWeapon == null)
                         {

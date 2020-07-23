@@ -36,6 +36,10 @@ public class Combatant : IComparable<Combatant>
     // DeathFails and saves for heroes/bosses
     public int deathSaves = 0;
     public int deathFails = 0;
+
+    // Targets
+    public Combatant focusedTar; // Target being attacked
+    public int rangeToFocus; // distance between the target and combatant
     public Combatant()
     {
     }
@@ -376,7 +380,7 @@ public class Combatant : IComparable<Combatant>
     /*
         CalcRound method, returns an array of zeroes unless a child class uses the method.
      */
-    public int[] calcRound(int targetAC, int rangeToTarget)
+    public int[] calcRound(Combatant c)
     {
         int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         return damageDone;
