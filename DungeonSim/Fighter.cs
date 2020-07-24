@@ -15,6 +15,7 @@ public class Fighter : Combatant
     public bool thirdAttack = false;
     public bool fourth = false;
     public bool championArch = false; // archetype grants passive bonuses (using champion for our simulation)
+    public bool championArchRankTwo = false; // archetype grants passive bonuses (using champion for our simulation)
     public bool indominatableRankOne = false;
     public bool indominatableRankTwo = false;
     public bool indominatableRankThree = false;
@@ -90,7 +91,7 @@ public class Fighter : Combatant
                  First Attack
                  */
                 int roll = (diceTower.roll("1d20"));
-                if ((roll == 20) || ((roll == 19) && championArch)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                if ((roll == 20) || ((roll == 19) && championArch || (roll == 18 && championArchRankTwo))) // Criticals do DOUBLE dice damage AND ALWAYS HIT
                 {
                     if (primaryWeapon == null)
                     {
@@ -131,7 +132,7 @@ public class Fighter : Combatant
                 if (secondAttack) 
                 {
                     roll = (diceTower.roll("1d20"));
-                    if ((roll == 20) || ((roll == 19) && championArch)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                    if ((roll == 20) || ((roll == 19) && championArch) || (roll == 18 && championArchRankTwo)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
                     {
                         if (primaryWeapon == null)
                         {
@@ -173,7 +174,7 @@ public class Fighter : Combatant
                 if (thirdAttack)
                 {
                     roll = (diceTower.roll("1d20"));
-                    if ((roll == 20) || ((roll == 19) && championArch)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                    if ((roll == 20) || ((roll == 19) && championArch || (roll == 18 && championArchRankTwo))) // Criticals do DOUBLE dice damage AND ALWAYS HIT
                     {
                         if (primaryWeapon == null)
                         {
@@ -343,6 +344,11 @@ public class Fighter : Combatant
         {
             indominatableRankOne = true; // Allows the reroll of a save once per long rest
         }
+
+        if (level >= 13)
+        {
+            indominatableRankTwo = true; // Allows the reroll of a save once per long rest
+        }
         curHp = hpmax;
     }
 
@@ -443,7 +449,22 @@ public class Fighter : Combatant
 
         if (level == 12)
         {
-            stats[2] += 2; // defaulting to a constitution increas at level 8
+            stats[2] += 2; // defaulting to a constitution increas at level 12
+        }
+
+        if (level == 13)
+        {
+            indominatableRankTwo = true; // Allows the reroll of a save once per long rest
+        }
+
+        if (level == 14)
+        {
+            stats[2] += 2; // defaulting to a constitution increas at level 14
+        }
+
+        if (level == 15)
+        {
+            championArchRankTwo = true; // Superior Critical
         }
     }
 
