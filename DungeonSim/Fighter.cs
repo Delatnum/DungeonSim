@@ -11,7 +11,9 @@ public class Fighter : Combatant
 
     public bool secondWind = true; // Can be used once per long/short rest (once in comabt) as a bonus action restores
     public bool actionSurge = false; // Can be used once per long/short rest (once in comabt) as a bonus action restores
-    public bool secondAttack = false;
+    public bool secondAttack = false; // attacks per action INCREASE at certain intervals
+    public bool thirdAttack = false;
+    public bool fourth = false;
     public bool championArch = false; // archetype grants passive bonuses (using champion for our simulation)
     public bool indominatableRankOne = false;
     public bool indominatableRankTwo = false;
@@ -385,6 +387,21 @@ public class Fighter : Combatant
         if (level == 9)
         {
             indominatableRankOne = true; // Allows the reroll of a save once per long rest
+        }
+
+        if (level == 10)
+        {
+           ac = 13; //  Defense fighting style unlocked (+1 to AC)
+        }
+
+        if (level == 11)
+        {
+            thirdAttack = true; ; //  Defense fighting style unlocked (+1 to AC)
+        }
+
+        if (level == 12)
+        {
+            stats[2] += 2; // defaulting to a constitution increas at level 8
         }
     }
 
