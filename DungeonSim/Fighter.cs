@@ -165,6 +165,48 @@ public class Fighter : Combatant
                         }
                     }
                 }
+
+                /*
+                 Third Attack, if level 11+
+                 */
+
+                if (thirdAttack)
+                {
+                    roll = (diceTower.roll("1d20"));
+                    if ((roll == 20) || ((roll == 19) && championArch)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                    {
+                        if (primaryWeapon == null)
+                        {
+                            damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
+                            damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
+                        }
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+
+                            damageDone[i] += damageHit[i];
+                        }
+                        damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+
+                            damageDone[i] += damageHit[i];
+                        }
+                    }
+                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
+                    {
+                        if (primaryWeapon == null)
+                        {
+                            damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
+                        }
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+
+                            damageDone[i] += damageHit[i];
+                        }
+                    }
+                }
                 action = false;
             }
 
