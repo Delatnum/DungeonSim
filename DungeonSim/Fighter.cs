@@ -439,7 +439,7 @@ public class Fighter : Combatant
 
         if (level == 10)
         {
-           ac = 13; //  Defense fighting style unlocked (+1 to AC)
+           ac++; //  Defense fighting style unlocked (+1 to AC)
         }
 
         if (level == 11)
