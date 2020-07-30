@@ -353,21 +353,21 @@ public class Fighter : Combatant
     }
 
     /*
-        Update level
+        Update level (Max 20, Min 1)
     */
-    public void levelUp() 
+    public void changeCurLevel(int amount) 
     {
-        if (level == 20) 
+        level += amount;
+        if (level < 1)
         {
-            return;
+            level = 1;
         }
-
-        if (level < 20) 
+        else if (level > 20)
         {
-            level++;
-            hpmax = (10 + stats[2] + (level - 1) * (6 + stats[2]));
-            curHp = hpmax;
+            level = 20;
         }
+        hpmax = (10 + stats[2] + (level - 1) * (6 + stats[2]));
+        curHp = hpmax;
         /*
             Proficiency Handling
          */
@@ -467,6 +467,7 @@ public class Fighter : Combatant
             championArchRankTwo = true; // Superior Critical
         }
     }
+
 
     /*
      

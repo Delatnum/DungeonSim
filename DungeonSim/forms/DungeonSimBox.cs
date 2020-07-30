@@ -22,7 +22,6 @@ namespace DungeonSim
 
         private void DungeonSimBox_Load(object sender, EventArgs e)
         {
-            Properties.Settings.Default["FirstRun"] = true;
             if ((bool)Properties.Settings.Default["FirstRun"] == true)
             {
                 Properties.Settings.Default["FirstRun"] = false;
@@ -54,8 +53,10 @@ namespace DungeonSim
 
         private void AddPartyButton_Click(object sender, EventArgs e)
         {
-            AddForm test = new AddForm();
-            test.Show();
+            AddForm FormAddParty = new AddForm();
+            FormAddParty.Tag = "Party";
+            FormAddParty.Text = "Add Party";
+            FormAddParty.Show();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -70,11 +71,18 @@ namespace DungeonSim
 
         private void AddMonsterButton_Click(object sender, EventArgs e)
         {
-            AddForm test = new AddForm();
-            test.Show();
+            AddForm FormAddMonster = new AddForm();
+            FormAddMonster.Tag = "Monsters";
+            FormAddMonster.Text = "Add Monsters";
+            FormAddMonster.Show();
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void plotView1_Click(object sender, EventArgs e)
         {
 
         }

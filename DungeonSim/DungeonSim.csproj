@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Combatant.cs" />
     <Compile Include="dice.cs" />
+    <Compile Include="Encounter.cs" />
     <Compile Include="Fighter.cs" />
     <Compile Include="forms\DungeonSimBox.cs">
       <SubType>Form</SubType>

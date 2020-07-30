@@ -102,13 +102,14 @@ namespace DungeonSim
             this.plotView1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.plotView1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            this.plotView1.Click += new System.EventHandler(this.plotView1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(1127, 153);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 23);
+            this.label2.Size = new System.Drawing.Size(104, 18);
             this.label2.TabIndex = 9;
             this.label2.Text = "Statistics Plot";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -168,7 +169,7 @@ namespace DungeonSim
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(323, 608);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 23);
+            this.label5.Size = new System.Drawing.Size(120, 18);
             this.label5.TabIndex = 15;
             this.label5.Text = "Previous Events";
             // 
@@ -177,7 +178,7 @@ namespace DungeonSim
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(1138, 435);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(330, 23);
+            this.label6.Size = new System.Drawing.Size(264, 18);
             this.label6.TabIndex = 16;
             this.label6.Text = "Probabilities Plot (More specific later)";
             // 

@@ -19,6 +19,30 @@ namespace DungeonSim.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button1.Location = new Point(button1.Location.X, button1.Location.Y + 40);
+            
+            if (Tag.Equals("Monsters"))
+            {
+                
+            }
+            if (Tag.Equals("Party"))
+            {
+
+            }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }
