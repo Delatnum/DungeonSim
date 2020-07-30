@@ -123,7 +123,7 @@ public class Fighter : Combatant
                         damageDone[i] += damageHit[i];
                     }
                 } 
-                else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus)) 
+                else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus + primaryWeapon.hitChanceMod)) 
                 {
                     if (primaryWeapon == null)
                     {
@@ -164,7 +164,7 @@ public class Fighter : Combatant
                             damageDone[i] += damageHit[i];
                         }
                     }
-                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
+                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus + primaryWeapon.hitChanceMod))
                     {
                         if (primaryWeapon == null)
                         {
@@ -206,7 +206,7 @@ public class Fighter : Combatant
                             damageDone[i] += damageHit[i];
                         }
                     }
-                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
+                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus + primaryWeapon.hitChanceMod))
                     {
                         if (primaryWeapon == null)
                         {
@@ -248,7 +248,7 @@ public class Fighter : Combatant
                             damageDone[i] += damageHit[i];
                         }
                     }
-                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
+                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus + primaryWeapon.hitChanceMod))
                     {
                         if (primaryWeapon == null)
                         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 */
 public class BasicMonster : Combatant
 {
-    
+    public int hitMod = 0; // some monsters have increase hit modifiers to help their chance to hit (zero by default)
 
     public BasicMonster(int STR, int DEX, int CON, int INT, int WIS, int CHA, int _movement, int AC, Weapon _primary, Weapon _secondary)
     {
@@ -26,10 +26,12 @@ public class BasicMonster : Combatant
     stats[4] = WIS;
     stats[5] = CHA;
 
+        
     movement = _movement;
 
     primaryWeapon = _primary;
-    secondaryWeapon = _secondary;
+    if(_secondary == null)
+        secondaryWeapon = primaryWeapon;
     }
 
     /*
@@ -64,31 +66,102 @@ public class BasicMonster : Combatant
             // if out of range move closer
             if (rangeToFocus > (movement))
             {
-                if (primaryWeapon.isRanged())
+                /*
+                    Check for ranged weapon and make attack
+                 */
+                rangeToFocus -= movement;
+                if (rangeToFocus < 0)
                 {
-                    int[] damageHit = primaryWeapon.calcDamage();
-                    for (int i = 0; i < damageDone.Length; i++)
-                    {
-
-                        damageDone[i] += damageHit[i];
-                    }
-                } 
-                else if (secondaryWeapon.isRanged()) 
-                {                    
-                    int[] damageHit = secondaryWeapon.calcDamage();
-                    for (int i = 0; i < damageDone.Length; i++)
-                    {
-
-                        damageDone[i] += damageHit[i];
-                    }
+                    rangeToFocus = 0;// in melee range
                 }
-                action = false; // action used to move double speed
-            }
 
+                if (primaryWeapon.isRanged() && primaryWeapon.disAdvRange >= rangeToFocus && rangeToFocus != 0)
+                {
+                    int roll = (diceTower.roll("1d20"));
+                    if (rangeToFocus > primaryWeapon.range)
+                    {
+                        int disAdvRoll = (diceTower.roll("1d20"));
+                        if (disAdvRoll < roll)
+                        {
+                            roll = disAdvRoll;
+                        }
+                    }
+
+                    if ((roll == 20)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                    {
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                        damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                    } else if (c.AC <= (roll + ((stats[0]) - 10) / 2) + hitMod) 
+                    {
+                        int [] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                    }
+                    action = false; // attack made
+                }
+                else if (secondaryWeapon.isRanged() && secondaryWeapon.disAdvRange >= rangeToFocus && rangeToFocus != 0)
+                {
+                    int roll = (diceTower.roll("1d20"));
+                    if (rangeToFocus > secondaryWeapon.range)
+                    {
+                        int disAdvRoll = (diceTower.roll("1d20"));
+                        if (disAdvRoll < roll)
+                        {
+                            roll = disAdvRoll;
+                        }
+                    }
+
+                    if ((roll == 20)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                    {
+                        int[] damageHit = secondaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                        damageHit = secondaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                    } // Standard hits MUST meet the targets AC to hit
+                    else if (c.AC <= (roll + ((stats[0]) - 10) / 2) + hitMod)
+                    {
+                        int[] damageHit = secondaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                    }
+                    action = false;// attack made
+                }
+                else 
+                {
+                    rangeToFocus -= movement;
+                    if (rangeToFocus < 0)
+                    {
+                        rangeToFocus = 0;// in melee range
+                    }
+                    action = false; // aciton used for movement
+                }
+                
+            }
+            /*
+                If no ranged action as made AND the target didnt dash (move twice at the cost of an action), then we assume the monster will melee attack
+             */
             if (action)
             {
                 /*
-                 First Attack
+                 Melee Attack
                  */
                 int roll = (diceTower.roll("1d20"));
                 if ((roll == 20)) // Criticals do DOUBLE dice damage AND ALWAYS HIT
@@ -98,48 +171,41 @@ public class BasicMonster : Combatant
                         damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
                         damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
                     }
-                    int[] damageHit = primaryWeapon.calcDamage();
-                    for (int i = 0; i < damageDone.Length; i++)
+                    else
                     {
-
-                        damageDone[i] += damageHit[i];
-                    }
-                    damageHit = primaryWeapon.calcDamage();
-                    for (int i = 0; i < damageDone.Length; i++)
-                    {
-
-                        damageDone[i] += damageHit[i];
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
+                        damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
                     }
                 }
-                else if (c.AC <= (roll + ((stats[0]) - 10) / 2))
+                else if (c.AC <= (roll + ((stats[0]) - 10) / 2) + hitMod)
                 {
                     if (primaryWeapon == null)
                     {
                         damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
                     }
-                    int[] damageHit = primaryWeapon.calcDamage();
-                    for (int i = 0; i < damageDone.Length; i++)
+                    else
                     {
-
-                        damageDone[i] += damageHit[i];
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+                            damageDone[i] += damageHit[i];
+                        }
                     }
                 }
-
-                /*
-                 Second Attack, if level 4+
-                 */
                                
                 action = false;
             }
         }
 
         return damageDone;
-    }
-    public void newRound()
-    {
-
-        action = true;
-
     }
     
 }

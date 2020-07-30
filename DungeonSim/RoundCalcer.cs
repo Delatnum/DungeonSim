@@ -42,36 +42,37 @@ class RoundCalcer
 
         int enemies = 1;
         int allies = 1;
-        /*
-         roll initiative and sort based on the rolls, populate sides of the battle
-         */
-        int indexer = 0;
-        foreach (Combatant c in Combatants)
-        {
-            c.rollInit();
-            combatantArray[indexer] = c;
-            if (c.isFriendly)             
-            {
-                listAllies.Add(c);
-                allies++;
-            }
-            else 
-            {
-                listEnemies.Add(c);
-                enemies++;
-            }
-            indexer++;
-        }
-
-        listAllies.Sort();
-        listEnemies.Sort();
-
-        Array.Sort(combatantArray);
+       
         /*
             Initialize first Round, establist targets and distance
          */
         if (isFirst)
         {
+            /*
+            roll initiative and sort based on the rolls, populate sides of the battle
+            */
+            int indexer = 0;
+            foreach (Combatant c in Combatants)
+            {
+                c.rollInit();
+                combatantArray[indexer] = c;
+                if (c.isFriendly)
+                {
+                    listAllies.Add(c);
+                    allies++;
+                }
+                else
+                {
+                    listEnemies.Add(c);
+                    enemies++;
+                }
+                indexer++;
+            }
+
+            listAllies.Sort();
+            listEnemies.Sort();
+
+            Array.Sort(combatantArray);
             // Set allies targets
             foreach (Combatant c in listAllies)
             {
@@ -106,6 +107,11 @@ class RoundCalcer
 
             allies = 0;
             enemies = 0;
+
+        foreach (Combatant c in Combatants)
+        {
+            c.newRound(); // refresh actions
+        }
 
         // Count enemies and allies still standing
         foreach (Combatant c in Combatants)

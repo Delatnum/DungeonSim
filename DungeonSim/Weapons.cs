@@ -8,6 +8,8 @@ public class Weapon
 	public string name;
 	public string weaponDice;
 	public string damageType;
+	public int damageMod = 0; // flat modifier for increase damage by the weapons damage type;
+	public int hitChanceMod = 0; // flat modifier for increase hitChance by the weapons type Note: Some magic and mastercrafted weapons are more likely to hit;
 	public string[] magicDamage = { };
 	public string[] magicType = { };
 
@@ -71,43 +73,43 @@ public class Weapon
 		switch(damageType)
 		{
 			case "acid":
-				overallDmg[0] += diceTower.roll(weaponDice);
+				overallDmg[0] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "bludgeoning":
-				overallDmg[1] += diceTower.roll(weaponDice);
+				overallDmg[1] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "cold":
-				overallDmg[2] += diceTower.roll(weaponDice);
+				overallDmg[2] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "fire":
-				overallDmg[3] += diceTower.roll(weaponDice);
+				overallDmg[3] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "force":
-				overallDmg[4] += diceTower.roll(weaponDice);
+				overallDmg[4] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "lightning":
-				overallDmg[5] += diceTower.roll(weaponDice);
+				overallDmg[5] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "necrotic":
-				overallDmg[6] += diceTower.roll(weaponDice);
+				overallDmg[6] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "piercing":
-				overallDmg[7] += diceTower.roll(weaponDice);
+				overallDmg[7] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "poison":
-				overallDmg[8] += diceTower.roll(weaponDice);
+				overallDmg[8] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "psychic":
-				overallDmg[9] += diceTower.roll(weaponDice);
+				overallDmg[9] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "radiant":
-				overallDmg[10] += diceTower.roll(weaponDice);
+				overallDmg[10] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "slashing":
-				overallDmg[11] += diceTower.roll(weaponDice);
+				overallDmg[11] += diceTower.roll(weaponDice) + damageMod;
 				break;
 			case "thunder":
-				overallDmg[12] += diceTower.roll(weaponDice);
+				overallDmg[12] += diceTower.roll(weaponDice) + damageMod;
 				break;
 
 			default:
