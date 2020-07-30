@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
 
-class RoundCalcer
+public class RoundCalcer
 {
     public int allyDamage = 0;
     public int enemyDamage = 0;
@@ -24,8 +24,6 @@ class RoundCalcer
     
     /*
         Calculates overall damage, returns the damage as a sum for one side. On final round returns negative if the hostiles win, Posative if the allies win. Returns 0 if fight is ongoing.
-    
-        TODO: calculate combat results
     
         @param distanceBetween, DistanceBetweenParties // assume 0 for now
         @param isFirst, is this the first round of combat?
@@ -82,7 +80,7 @@ class RoundCalcer
                 System.Threading.Thread.Sleep(0); 
                 Random rnd = new Random();
 
-                x = rnd.Next(0, (listEnemies.Count + 1)); // get random index of enemy list               
+                x = rnd.Next(0, (listEnemies.Count)); // get random index of enemy list               
 
                 c.focusedTar = listEnemies[x];
             }
@@ -95,7 +93,7 @@ class RoundCalcer
                 System.Threading.Thread.Sleep(0); 
                 Random rnd = new Random();
 
-                x = rnd.Next(0, (listAllies.Count + 1)); // get random index of ally list               
+                x = rnd.Next(0, (listAllies.Count)); // get random index of ally list               
 
                 c.focusedTar = listAllies[x];
             }
@@ -105,8 +103,8 @@ class RoundCalcer
         Simulate combat round
         */          
 
-            allies = 0;
-            enemies = 0;
+        allies = 0;
+        enemies = 0;
 
         foreach (Combatant c in Combatants)
         {
@@ -116,7 +114,7 @@ class RoundCalcer
         // Count enemies and allies still standing
         foreach (Combatant c in Combatants)
         {
-            if (!c.isUnconcious || !c.isDead)
+            if (!c.isUnconcious && !c.isDead)
             {
                 if (c.isFriendly)
                 {
@@ -156,7 +154,7 @@ class RoundCalcer
                         {
                             if (t.isDead || t.isUnconcious)
                             {
-
+                                continue;
                             }
                             else
                             {
@@ -176,7 +174,7 @@ class RoundCalcer
                         {
                             if (t.isDead || t.isUnconcious)
                             {
-
+                                continue;
                             }
                             else
                             {

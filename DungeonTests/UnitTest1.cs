@@ -167,5 +167,96 @@ namespace DungeonTests
             Assert.IsFalse(SkeletonOne.vulnerabilites[1]);
 
         }
+
+        [TestMethod]
+        public void testGetMonsterFromLibrary()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            Combatant c = monsters.getMonster("Skeleton");
+
+            Assert.AreEqual(c.stats[0], 10);
+            Assert.AreEqual(c.stats[1], 14);
+            Assert.AreEqual(c.stats[2], 15);
+            Assert.AreEqual(c.stats[3], 6);
+            Assert.AreEqual(c.stats[4], 8);
+            Assert.AreEqual(c.stats[5], 5);
+
+            Assert.AreEqual(c.primaryWeapon.name, "shortsword");
+            Assert.AreEqual(c.secondaryWeapon.name, "shortbow");
+
+            Assert.AreEqual(c.hpmax, 13);
+            Assert.AreEqual(c.curHp, 13);
+        }
+
+        [TestMethod]
+        public void RoundCalcerAddCombatants()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            // Add Ally
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+
+            instance.damageCalculator(0, true);
+
+            Assert.AreEqual(instance.Combatants.Count, 2);
+            Assert.AreEqual(instance.listAllies.Count, 1);
+            Assert.AreEqual(instance.listEnemies.Count, 1);
+        }
+
+        [TestMethod]
+        public void RoundCalcerTestDefeat()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            // Add Ally
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+
+            int returnVal = instance.damageCalculator(0, true);
+
+            while (returnVal == 0) 
+            {
+                returnVal = instance.damageCalculator(0, false);
+            }
+
+            
+            Assert.IsTrue(returnVal < 0);
+        }
+
+        [TestMethod]
+        public void RoundCalcerTestVictory()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+            // Add Ally
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+
+            int returnVal = instance.damageCalculator(0, true);
+
+            while (returnVal == 0)
+            {
+                returnVal = instance.damageCalculator(0, false);
+            }
+
+
+            Assert.IsTrue(returnVal > 0);
+        }
+
     }
 }

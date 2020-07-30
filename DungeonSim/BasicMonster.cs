@@ -32,6 +32,10 @@ public class BasicMonster : Combatant
     primaryWeapon = _primary;
     if(_secondary == null)
         secondaryWeapon = primaryWeapon;
+        else
+        {
+            secondaryWeapon = _secondary;
+        }
     }
 
     /*
@@ -40,7 +44,7 @@ public class BasicMonster : Combatant
 
    */
 
-    public int[] calcRound(Combatant c)
+    public override int[] calcRound(Combatant c)
     {
         // Basic Monsters don't get death saves and automatically die unless the DM says otherwise or the group is roleplaying a capture scenario
         if (isUnconcious) 

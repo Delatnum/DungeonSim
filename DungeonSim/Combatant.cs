@@ -380,7 +380,7 @@ public class Combatant : IComparable<Combatant>
     /*
         CalcRound method, returns an array of zeroes unless a child class uses the method.
      */
-    public int[] calcRound(Combatant c)
+    public virtual int[] calcRound(Combatant c)
     {
         int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         return damageDone;

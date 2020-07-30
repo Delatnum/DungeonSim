@@ -10,7 +10,7 @@ namespace DungeonSim
     Class for calculating spell damage, as a note it does not factor in saves (if a character saves the dex check 
         on a fireball, the damage is halved, that is not calculated by this class.
   */
-    class SpellLibrary
+    public class SpellLibrary
     {
         public bool spellCastable = false; // last spell was a valid cast
         public bool lastSpellSaves = false; // last casted spell is a save

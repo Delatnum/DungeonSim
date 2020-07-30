@@ -57,7 +57,7 @@ public class Fighter : Combatant
          
     */
 
-    public int[] calcRound(Combatant c)
+    public override int[] calcRound(Combatant c)
     {
         /* after level 18, survivor grants passive healing at the start of a turn */
         if (survivor) 

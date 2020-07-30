@@ -9,7 +9,7 @@ namespace DungeonSim
     /*
      * This class returns combatants with the stats matching various DnD monsters, additional monsters added as needed.
          */
-    class MonsterLibrary
+    public class MonsterLibrary
     {
 
         public MonsterLibrary() 
