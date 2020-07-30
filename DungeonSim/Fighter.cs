@@ -62,7 +62,7 @@ public class Fighter : Combatant
         /* after level 18, survivor grants passive healing at the start of a turn */
         if (survivor) 
         { 
-            curHp += (5 + ((stats[2]) - 10) / 2));
+            curHp += (5 + (((stats[2]) - 10) / 2));
             if (curHp > hpmax) 
             {
                 curHp = hpmax;
