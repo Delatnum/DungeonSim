@@ -9,16 +9,19 @@ public class Fighter : Combatant
 
     // Fighter special actions
 
-    public bool secondWind = true; // Can be used once per long/short rest (once in comabt) as a bonus action restores
-    public bool actionSurge = false; // Can be used once per long/short rest (once in comabt) as a bonus action restores
+    public bool secondWind = true; // Can be used once per long/short rest (once in comabt) as a bonus action restores health
+    public bool actionSurge = false; // Can be used once per long/short rest (once in comabt) as restores action 
+    public bool actionSurgeRankTwo = false; // Can be used once per long/short rest (once in comabt) as a bonus action restores
     public bool secondAttack = false; // attacks per action INCREASE at certain intervals
     public bool thirdAttack = false;
+    public bool fourthAttack = false;
     public bool fourth = false;
     public bool championArch = false; // archetype grants passive bonuses (using champion for our simulation)
     public bool championArchRankTwo = false; // archetype grants passive bonuses (using champion for our simulation)
     public bool indominatableRankOne = false;
     public bool indominatableRankTwo = false;
     public bool indominatableRankThree = false;
+    public bool survivor = false;
 
     public int level = 1;
 
@@ -56,6 +59,15 @@ public class Fighter : Combatant
 
     public int[] calcRound(Combatant c)
     {
+        /* after level 18, survivor grants passive healing at the start of a turn */
+        if (survivor) 
+        { 
+            curHp += (5 + ((stats[2]) - 10) / 2));
+            if (curHp > hpmax) 
+            {
+                curHp = hpmax;
+            }
+        }
 
         int[] damageDone = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -208,6 +220,48 @@ public class Fighter : Combatant
                         }
                     }
                 }
+
+                /*
+                 Fourth Attack, if level 20
+                 */
+
+                if (fourthAttack)
+                {
+                    roll = (diceTower.roll("1d20"));
+                    if ((roll == 20) || ((roll == 19) && championArch || (roll == 18 && championArchRankTwo))) // Criticals do DOUBLE dice damage AND ALWAYS HIT
+                    {
+                        if (primaryWeapon == null)
+                        {
+                            damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
+                            damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
+                        }
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+
+                            damageDone[i] += damageHit[i];
+                        }
+                        damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+
+                            damageDone[i] += damageHit[i];
+                        }
+                    }
+                    else if (c.AC <= ((roll + ((stats[0]) - 10) / 2) + proficiencyBonus))
+                    {
+                        if (primaryWeapon == null)
+                        {
+                            damageDone[1] += (1 + (((stats[0]) - 10) / 2)); // unarmed strikes deal 1 + strength mod damage
+                        }
+                        int[] damageHit = primaryWeapon.calcDamage();
+                        for (int i = 0; i < damageDone.Length; i++)
+                        {
+
+                            damageDone[i] += damageHit[i];
+                        }
+                    }
+                }
                 action = false;
             }
 
@@ -222,6 +276,12 @@ public class Fighter : Combatant
             if (level >= 2) 
             {
                 actionSurge = false; // burn actionSurge for extra action
+                action = true;
+            }
+
+            if (level >= 17 && actionSurge == false && action == false)
+            {
+                actionSurgeRankTwo = false; // burn actionSurge for extra action
                 action = true;
             }
         }
@@ -350,6 +410,12 @@ public class Fighter : Combatant
             indominatableRankTwo = true; // Allows the reroll of a save once per long rest
         }
         curHp = hpmax;
+
+        if (level >= 16) 
+        {
+            actionSurgeRankTwo = true;
+            indominatableRankThree = true;
+        }
     }
 
     /*
@@ -419,7 +485,7 @@ public class Fighter : Combatant
 
         if (level == 6)
         {
-            stats[1] += 2; // defaulting to a strength increas at level 6
+            stats[2] += 2; // defaulting to a constitution increas at level 6
         }
 
         if (level == 7)
@@ -429,7 +495,7 @@ public class Fighter : Combatant
 
         if (level == 8)
         {
-            stats[1] += 2; // defaulting to a strength increas at level 8
+            stats[0] += 2; // defaulting to a strength increas at level 8
         }
 
         if (level == 9)
@@ -449,7 +515,7 @@ public class Fighter : Combatant
 
         if (level == 12)
         {
-            stats[2] += 2; // defaulting to a constitution increas at level 12
+            stats[2] += 2; // defaulting to a constitution increase at level 12
         }
 
         if (level == 13)
@@ -465,6 +531,32 @@ public class Fighter : Combatant
         if (level == 15)
         {
             championArchRankTwo = true; // Superior Critical
+        }
+
+        if (level == 16)
+        {
+            stats[0] += 2; // defaulting to a strength increase at level 16
+        }
+
+        if (level == 17)
+        {
+            actionSurgeRankTwo = true;
+            indominatableRankThree = true;
+        }
+
+        if (level == 18)
+        {
+            survivor = true;
+        }
+
+        if (level == 19)
+        {
+            stats[1] += 2; // defaulting to a dexterity increase at level 19
+        }
+
+        if (level == 20)
+        {
+            fourthAttack = true;
         }
     }
 
