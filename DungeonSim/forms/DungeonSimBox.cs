@@ -86,5 +86,24 @@ namespace DungeonSim
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RoundCalcer round = new RoundCalcer();
+            foreach (var hero in Encounter.Instance.Party)
+            {
+                round.addCombatant(hero, true);
+            }
+            foreach (var monster in Encounter.Instance.Monsters)
+            {
+                round.addCombatant(monster, false);
+            }
+            int damage = round.damageCalculator(10, true);
+            Encounter.Instance.Round++;
+            Label Lbldamage = new Label();
+            Lbldamage.Text = $"Damage done on round {Encounter.Instance.Round}: {damage}";
+            Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * Encounter.Instance.Round);
+
+        }
     }
 }

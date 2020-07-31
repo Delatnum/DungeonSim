@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -12,6 +13,7 @@ namespace DungeonSim
   */
     public class SpellLibrary
     {
+        public List<string> AllSpells = new List<string> { "fireball" };
         public bool spellCastable = false; // last spell was a valid cast
         public bool lastSpellSaves = false; // last casted spell is a save
         public string lastSpellsaveType = ""; // This should be STR, DEX, CON, INT, WIS, CHA based on the save
@@ -86,6 +88,49 @@ namespace DungeonSim
                         spellCastable = false;
                     }
                 break;
+                case "magic missle":
+                    
+                    spellCastable = true;
+                    lastSpellsaveType = null;
+                    lastSpellSaves = false;
+                    if (level == 1)
+                    {
+                        damageDone[3] += diceTower.roll("2d4");
+                    }
+                    if (level == 2)
+                    {
+                        damageDone[3] += diceTower.roll("2d4");
+                    }
+                    if (level == 3)
+                    {
+                        damageDone[3] += diceTower.roll("3d4");
+                    }
+                    else if (level == 4)
+                    {
+                        damageDone[3] += diceTower.roll("4d4");
+                    }
+                    else if (level == 5)
+                    {
+                        damageDone[3] += diceTower.roll("5d4");
+                    }
+                    else if (level == 6)
+                    {
+                        damageDone[3] += diceTower.roll("6d4");
+                    }
+                    else if (level == 7)
+                    {
+                        damageDone[3] += diceTower.roll("7d4");
+                    }
+                    else if (level == 8)
+                    {
+                        damageDone[3] += diceTower.roll("8d4");
+                    }
+                    else
+                    {
+                        damageDone[3] += diceTower.roll("9d4");
+                    }
+                    
+                    break;
 
                 default:
                 break;

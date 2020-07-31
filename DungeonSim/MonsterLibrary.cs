@@ -57,6 +57,31 @@ namespace DungeonSim
                     zombie.hpmax = 22;
                     zombie.curHp = 22;
                     return zombie;
+                /*
+                    Goblin stats according to the DnD 5e player's handbook
+                */
+                case "goblin":
+                    Weapon scimitar = new Weapon("scimitar", "1d6", "slashing");
+                    scimitar.damageMod = 2;
+                    shortBow = new Weapon("shortbow", "1d6", "piercing");
+                    shortBow.setRanged(80, 320);
+                    shortBow.damageMod = 2;
+                    BasicMonster goblin = new BasicMonster(8, 14, 10, 10, 8, 8, 30, 15, scimitar, shortBow);
+                    goblin.hitMod = 4;
+                    goblin.hpmax = 7;
+                    goblin.curHp = 7;
+                    return goblin;
+                /*
+                     Dire wolf stats according to the DnD 5e player's handbook
+                */
+                case "dire wolf":
+                    Weapon bite = new Weapon("bite", "2d6", "piercing");
+                    bite.damageMod = 3;
+                    BasicMonster direWolf = new BasicMonster(17, 15, 15, 3, 12, 7, 50, 14, bite, null);
+                    direWolf.hitMod = 5;
+                    direWolf.hpmax = 37;
+                    direWolf.curHp = 37;
+                    return direWolf;
 
                 default:
                 return null;

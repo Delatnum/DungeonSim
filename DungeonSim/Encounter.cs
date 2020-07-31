@@ -9,8 +9,12 @@ namespace DungeonSim
     public sealed class Encounter
     {
         private static Encounter instance = null;
-        public List<Combatant> Party { get; set; }
-        public List<Combatant> Monsters { get; set; }
+        public List<Combatant> Party = new List<Combatant>();
+        public List<Combatant> Monsters = new List<Combatant>();
+
+        public List<string> AllMonsters = new List<string> { "skeleton", "zombie", "goblin", "dire wolf" };
+        public List<string> AllSpells = new List<string> { "fireball", "magic missle" };
+        public MonsterLibrary Monsterlib = new MonsterLibrary();
         public int Round { get; set; }
         public bool Active { get; set; }
 
@@ -23,6 +27,19 @@ namespace DungeonSim
                     instance = new Encounter();
                 return instance;
             }
+        }
+
+        public void ClearAll()
+        {
+            Party.Clear();
+            Monsters.Clear();
+            Round = 1;
+            Active = false;
+        }
+
+        public void AddMonster(string monster)
+        {
+            Monsters.Add(Monsterlib.getMonster(monster));
         }
 
     }

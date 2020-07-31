@@ -332,7 +332,7 @@ public class Combatant : IComparable<Combatant>
     public int rollInit()
     {
         Dice diceTower = new Dice();
-        curIniative = diceTower.roll("1d20" + ((stats[1] - 10) / 2));
+        curIniative = diceTower.roll("1d20") + ((stats[1] - 10) / 2);
         return curIniative;
     }
 
