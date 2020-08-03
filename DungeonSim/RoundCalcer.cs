@@ -289,6 +289,50 @@ public class RoundCalcer
     }
 
     /*
+        Gets the number of allies standing
+    */
+    public int allyUpCount()
+    {
+        int allyCount = 0;
+
+        foreach (Combatant c in Combatants)
+        {
+            if (c.isFriendly)
+            {
+
+                if (!c.isDead && !c.isUnconcious) 
+                {
+                    allyCount++;
+                }
+            }
+        }
+
+        return allyCount;
+    }
+
+    /*
+        Gets the number of allies dead (not unconcious)
+    */
+    public int allyDeadCount()
+    {
+        int deathCount = 0;
+
+        foreach (Combatant c in Combatants)
+        {
+            if (c.isFriendly)
+            {
+
+                if (c.isDead)
+                {
+                    deathCount++;
+                }
+            }
+        }
+
+        return deathCount;
+    }
+
+    /*
         Refresh Combatants (Restores the dead too!)
      */
     public void restoreAll()
@@ -301,6 +345,53 @@ public class RoundCalcer
             c.longRest();
         }
 
+    }
+
+    /*
+     Mass Round Sampler Runs n times and updates stats to match
+     */
+
+    public double avgPartyEndPCT = 0; // This stores the average health of the party when the encounter ends
+    public double avgNumberMembersUp = 0; // This stores the average number of players up at the end of the encounter
+
+
+    public double roundSampler(int n) 
+    {
+        int enemyWin = 0;
+        int allyWin = 0;
+        
+
+        avgPartyEndPCT = 0;
+        avgNumberMembersUp = 0;
+
+        for (int i = 0; i < n; i++) 
+        {
+            int roundVal = 0;
+
+            roundVal = this.damageCalculator(0, true);
+
+            while (roundVal == 0)
+            {
+                roundVal = this.damageCalculator(0, false);
+            }
+
+            if (roundVal > 0)
+            {
+                allyWin++;
+            }
+            else 
+            {
+                enemyWin++;
+            }
+
+            avgPartyEndPCT += this.partyPercent();
+            avgNumberMembersUp += this.allyUpCount();
+        }
+
+        avgPartyEndPCT /= n;
+        avgNumberMembersUp /= n;
+
+        return (allyWin/n); // Win Rate
     }
 }
 

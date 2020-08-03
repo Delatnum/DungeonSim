@@ -16,7 +16,7 @@ namespace DungeonSim
         public List<string> AllSpells = new List<string> { "fireball" };
         public bool spellCastable = false; // last spell was a valid cast
         public bool lastSpellSaves = false; // last casted spell is a save
-        public string lastSpellsaveType = ""; // This should be STR, DEX, CON, INT, WIS, CHA based on the save
+        public string lastSpellsaveType = ""; // This should be STR, DEX, CON, INT, WIS, CHA based on the save Irrelevant and uncalled IF and ONLY IF lastSpellSaves == false
         public SpellLibrary() 
         { 
         
