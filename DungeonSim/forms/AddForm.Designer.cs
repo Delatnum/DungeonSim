@@ -132,7 +132,7 @@ namespace DungeonSim.forms
             // LblPrimary
             // 
             this.LblPrimary.AutoSize = true;
-            this.LblPrimary.Location = new System.Drawing.Point(521, 9);
+            this.LblPrimary.Location = new System.Drawing.Point(532, 9);
             this.LblPrimary.Name = "LblPrimary";
             this.LblPrimary.Size = new System.Drawing.Size(113, 17);
             this.LblPrimary.TabIndex = 9;
@@ -141,7 +141,7 @@ namespace DungeonSim.forms
             // LblSecondary
             // 
             this.LblSecondary.AutoSize = true;
-            this.LblSecondary.Location = new System.Drawing.Point(655, 9);
+            this.LblSecondary.Location = new System.Drawing.Point(666, 9);
             this.LblSecondary.Name = "LblSecondary";
             this.LblSecondary.Size = new System.Drawing.Size(133, 17);
             this.LblSecondary.TabIndex = 10;
@@ -197,5 +197,7 @@ namespace DungeonSim.forms
         private System.Windows.Forms.Label LblPrimary;
         private System.Windows.Forms.Label LblSecondary;
         private System.Windows.Forms.Label LblName;
+        private Dictionary<string, System.Windows.Forms.TextBox> TxtStats = new Dictionary<string, System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.ComboBox> CmboMonsters = new List<System.Windows.Forms.ComboBox>();
     }
 }

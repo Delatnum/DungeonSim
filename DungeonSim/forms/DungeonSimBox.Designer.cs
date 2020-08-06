@@ -86,7 +86,7 @@ namespace DungeonSim
             this.AddPartyButton.Name = "AddPartyButton";
             this.AddPartyButton.Size = new System.Drawing.Size(119, 25);
             this.AddPartyButton.TabIndex = 7;
-            this.AddPartyButton.Text = "Add Party";
+            this.AddPartyButton.Text = "Edit Party";
             this.AddPartyButton.UseVisualStyleBackColor = true;
             this.AddPartyButton.Click += new System.EventHandler(this.AddPartyButton_Click);
             // 
@@ -143,13 +143,13 @@ namespace DungeonSim
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(119, 25);
             this.button2.TabIndex = 12;
-            this.button2.Text = "Add Monsters";
+            this.button2.Text = "Edit Monsters";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.AddMonsterButton_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(255, 538);
+            this.progressBar1.Location = new System.Drawing.Point(267, 571);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(240, 33);
             this.progressBar1.TabIndex = 13;
@@ -157,7 +157,7 @@ namespace DungeonSim
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(311, 500);
+            this.label4.Location = new System.Drawing.Point(323, 533);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 18);
             this.label4.TabIndex = 14;
@@ -167,7 +167,7 @@ namespace DungeonSim
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(323, 608);
+            this.label5.Location = new System.Drawing.Point(335, 641);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(120, 18);
             this.label5.TabIndex = 15;
@@ -184,7 +184,7 @@ namespace DungeonSim
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(326, 435);
+            this.button1.Location = new System.Drawing.Point(317, 475);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 23);
             this.button1.TabIndex = 17;
