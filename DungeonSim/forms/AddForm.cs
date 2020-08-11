@@ -29,15 +29,16 @@ namespace DungeonSim.forms
                 int i = Encounter.Instance.Monsters.Count;
                 ComboBox name = new ComboBox();
                 name.DataSource = Encounter.Instance.AllMonsters;
-                name.Location = new Point(button1.Location.X + 30, button1.Location.Y);
+                name.Location = new Point(button1.Location.X + 30, button1.Location.Y + 40);
                 name.Width = 75;
+                name.BindingContext = new BindingContext();
                 CmboMonsters.Add(name);
                 Controls.Add(CmboMonsters[i]);
-                Encounter.Instance.AddMonster(Encounter.Instance.AllMonsters[i]);
-                /*CmboMonsters[i].SelectedIndexChanged += new EventHandler((object s, EventArgs etwo) =>
+                Encounter.Instance.AddMonster(CmboMonsters[i].SelectedValue.ToString());
+                CmboMonsters[i].SelectedIndexChanged += new EventHandler((object s, EventArgs etwo) =>
                 {
-                    Encounter.Instance.Monsters[i] = Encounter.Instance.Monsterlib.getMonster(name.SelectedValue.ToString());
-                });*/
+                    Encounter.Instance.Monsters[i] = Encounter.Instance.Monsterlib.getMonster(CmboMonsters[i].SelectedValue.ToString());
+                });
             }
             if (Tag.Equals("Party"))
             {
@@ -79,7 +80,8 @@ namespace DungeonSim.forms
             if (Tag.Equals("Monsters"))
             {
                 partySize = Encounter.Instance.Monsters.Count;
-                /*ComboBox name = new ComboBox();
+                ComboBox name = new ComboBox();
+                name.BindingContext = new BindingContext();
                 name.DataSource = Encounter.Instance.AllMonsters;
                 name.Location = new Point(button1.Location.X + 30, button1.Location.Y);
                 name.Width = 75;
@@ -88,7 +90,8 @@ namespace DungeonSim.forms
                 name.SelectedIndexChanged += new EventHandler((object s, EventArgs etwo) =>
                 {
                     Encounter.Instance.Monsters[Encounter.Instance.Monsters.Count - 1] = Encounter.Instance.Monsterlib.getMonster(name.SelectedValue.ToString());
-                });*/
+                });
+                CmboMonsters.Add(name);
             }
             if (Tag.Equals("Party"))
             {
@@ -163,8 +166,20 @@ namespace DungeonSim.forms
             ac.Width = 25;
             TxtStats.Add($"heroName{curHero}ac", ac);
             Controls.Add(TxtStats[$"heroName{curHero}ac"]);
-            // Hero.primaryWeapon = _primary;
-            // Hero.secondaryWeapon = _secondary;
+            ComboBox primaryWeapon = new ComboBox();
+            primaryWeapon.DataSource = Encounter.Instance.AllWeapons;
+            primaryWeapon.Location = new Point(button1.Location.X + 90 + 30 * 10, button1.Location.Y);
+            primaryWeapon.Width = 75;
+            primaryWeapon.BindingContext = new BindingContext();
+            ComboWeapons.Add($"primaryWeapon{curHero}", primaryWeapon);
+            Controls.Add(ComboWeapons[$"primaryWeapon{curHero}"]);
+            ComboBox secondaryWeapon = new ComboBox();
+            secondaryWeapon.DataSource = Encounter.Instance.AllWeapons;
+            secondaryWeapon.Location = new Point(button1.Location.X + 90 + 30 * 13, button1.Location.Y);
+            secondaryWeapon.Width = 75;
+            secondaryWeapon.BindingContext = new BindingContext();
+            ComboWeapons.Add($"secondaryWeapon{curHero}",secondaryWeapon);
+            Controls.Add(ComboWeapons[$"secondaryWeapon{curHero}"]);
             return Hero;
            
         }

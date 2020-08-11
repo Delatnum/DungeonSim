@@ -198,6 +198,7 @@ namespace DungeonSim.forms
         private System.Windows.Forms.Label LblSecondary;
         private System.Windows.Forms.Label LblName;
         private Dictionary<string, System.Windows.Forms.TextBox> TxtStats = new Dictionary<string, System.Windows.Forms.TextBox>();
+        private Dictionary<string, System.Windows.Forms.ComboBox> ComboWeapons = new Dictionary<string, System.Windows.Forms.ComboBox>();
         private List<System.Windows.Forms.ComboBox> CmboMonsters = new List<System.Windows.Forms.ComboBox>();
     }
 }
