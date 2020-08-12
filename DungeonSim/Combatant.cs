@@ -200,7 +200,7 @@ public class Combatant : IComparable<Combatant>
         }
     }
 
-    public bool saves(string saveType, int saveDC)
+    public virtual bool saves(string saveType, int saveDC)
     {
         bool dodgin = true;
         Dice diceTower = new Dice();
@@ -389,7 +389,7 @@ public class Combatant : IComparable<Combatant>
     /*
        resets the approriate attributes for a long rest (6+ hour rest in game)
     */
-    public void longRest()
+    public virtual void longRest()
     {
         curHp = hpmax;
     }

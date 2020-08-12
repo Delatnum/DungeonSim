@@ -295,7 +295,7 @@ public class Fighter : Combatant
         The first is the type of save, the second is the DC to save
     */
 
-    public bool saves (string saveType, int saveDC)
+    public override bool saves(string saveType, int saveDC)
     {
         bool dodgin = true;
         Dice diceTower = new Dice();
@@ -383,7 +383,7 @@ public class Fighter : Combatant
     /*
        resets the approriate attributes for a long rest (6+ hour rest in game)
     */
-    public void longRest()
+    public override void longRest()
     {
 
         action = true;
@@ -410,13 +410,14 @@ public class Fighter : Combatant
         {
             indominatableRankTwo = true; // Allows the reroll of a save once per long rest
         }
-        curHp = hpmax;
-
+        
         if (level >= 16) 
         {
             actionSurgeRankTwo = true;
             indominatableRankThree = true;
         }
+
+        curHp = hpmax;
     }
 
     /*
