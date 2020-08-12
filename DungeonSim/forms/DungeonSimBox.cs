@@ -22,6 +22,7 @@ namespace DungeonSim
 
         private void DungeonSimBox_Load(object sender, EventArgs e)
         {
+            Properties.Settings.Default["FirstRun"] = true;
             if ((bool)Properties.Settings.Default["FirstRun"] == true)
             {
                 Properties.Settings.Default["FirstRun"] = false;

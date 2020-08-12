@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomePopup));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -42,7 +43,6 @@
             this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Welcome!";
-            this.label1.UseWaitCursor = true;
             // 
             // button1
             // 
@@ -52,24 +52,28 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.UseWaitCursor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.ControlText;
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.Menu;
             this.richTextBox1.Location = new System.Drawing.Point(59, 37);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(481, 73);
             this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.UseWaitCursor = true;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // WelcomePopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(612, 150);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button1);
@@ -82,7 +86,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome";
             this.TopMost = true;
-            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.WelcomePopup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
