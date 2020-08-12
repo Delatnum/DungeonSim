@@ -14,6 +14,7 @@ namespace DungeonSim
 
         public List<string> AllMonsters = new List<string> { "skeleton", "zombie", "goblin", "dire wolf" };
         public List<string> AllSpells = new List<string> { "fireball", "magic missle" };
+        public List<string> AllWeapons = new List<string> { "shortsword", "shortbow" , "slam", "bite", "scimitar", "none"};
         public MonsterLibrary Monsterlib = new MonsterLibrary();
         public int Round { get; set; }
         public bool Active { get; set; }

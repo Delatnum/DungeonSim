@@ -85,6 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundCalcer.cs" />
     <Compile Include="SpellLibrary.cs" />
+    <Compile Include="WeaponLibrary.cs" />
     <Compile Include="Weapons.cs" />
     <EmbeddedResource Include="forms\AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
