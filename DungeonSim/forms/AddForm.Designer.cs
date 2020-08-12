@@ -141,7 +141,7 @@ namespace DungeonSim.forms
             // LblSecondary
             // 
             this.LblSecondary.AutoSize = true;
-            this.LblSecondary.Location = new System.Drawing.Point(666, 9);
+            this.LblSecondary.Location = new System.Drawing.Point(651, 9);
             this.LblSecondary.Name = "LblSecondary";
             this.LblSecondary.Size = new System.Drawing.Size(133, 17);
             this.LblSecondary.TabIndex = 10;
@@ -151,7 +151,7 @@ namespace DungeonSim.forms
             // LblName
             // 
             this.LblName.AutoSize = true;
-            this.LblName.Location = new System.Drawing.Point(89, 9);
+            this.LblName.Location = new System.Drawing.Point(78, 9);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(45, 17);
             this.LblName.TabIndex = 11;
