@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 public class Combatant : IComparable<Combatant>
 {
+    
     // Resistances
     public bool[] resistances = { false, false, false, false, false, false, false, false, false, false, false, false, false };
     public bool[] immunities = { false, false, false, false, false, false, false, false, false, false, false, false, false };
@@ -40,6 +41,19 @@ public class Combatant : IComparable<Combatant>
     // Targets
     public Combatant focusedTar; // Target being attacked
     public int rangeToFocus; // distance between the target and combatant
+
+    private string name = "Combatant";
+    public string Name
+    {
+        get 
+        {
+            return name;
+        }
+        set 
+        {
+            name = value;
+        }
+    }
     public Combatant()
     {
     }

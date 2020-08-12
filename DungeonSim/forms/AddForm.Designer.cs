@@ -177,6 +177,7 @@ namespace DungeonSim.forms
             this.Controls.Add(this.button1);
             this.Name = "AddForm";
             this.Text = "AddForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddForm_FormClosing);
             this.Load += new System.EventHandler(this.AddForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -197,8 +198,30 @@ namespace DungeonSim.forms
         private System.Windows.Forms.Label LblPrimary;
         private System.Windows.Forms.Label LblSecondary;
         private System.Windows.Forms.Label LblName;
-        private Dictionary<string, System.Windows.Forms.TextBox> TxtStats = new Dictionary<string, System.Windows.Forms.TextBox>();
-        private Dictionary<string, System.Windows.Forms.ComboBox> ComboWeapons = new Dictionary<string, System.Windows.Forms.ComboBox>();
+        //int STR, int DEX, int CON, int INT, int WIS, int CHA, int _movement, Weapon _primary, Weapon _secondary
+        private List<System.Windows.Forms.TextBox> TxtNames = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtStr = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtDex = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtCon = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtInt = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtWis = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtCha = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMov= new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtAc = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.ComboBox> ComboPrimary = new List<System.Windows.Forms.ComboBox>();
+        private List<System.Windows.Forms.ComboBox> ComboSecondary = new List<System.Windows.Forms.ComboBox>();
+        private List<System.Windows.Forms.TextBox> TxtMNames = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMStr = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMDex = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMCon = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMInt = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMWis = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMCha = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMMov = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.TextBox> TxtMAc = new List<System.Windows.Forms.TextBox>();
+        private List<System.Windows.Forms.ComboBox> ComboMPrimary = new List<System.Windows.Forms.ComboBox>();
+        private List<System.Windows.Forms.ComboBox> ComboMSecondary = new List<System.Windows.Forms.ComboBox>();
+        
         private List<System.Windows.Forms.ComboBox> CmboMonsters = new List<System.Windows.Forms.ComboBox>();
     }
 }

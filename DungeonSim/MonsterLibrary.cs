@@ -41,6 +41,7 @@ namespace DungeonSim
                     skeleton.hitMod = 4;
                     skeleton.hpmax = 13;
                     skeleton.curHp = 13;
+                    skeleton.Name = "skeleton";
                     return skeleton;
                     /*
                      Zombie stats according to the DnD 5e player's handbook
@@ -56,6 +57,7 @@ namespace DungeonSim
                     zombie.hitMod = 3;
                     zombie.hpmax = 22;
                     zombie.curHp = 22;
+                    zombie.Name = "zombie";
                     return zombie;
                 /*
                     Goblin stats according to the DnD 5e player's handbook
@@ -70,6 +72,7 @@ namespace DungeonSim
                     goblin.hitMod = 4;
                     goblin.hpmax = 7;
                     goblin.curHp = 7;
+                    goblin.Name = "skeleton";
                     return goblin;
                 /*
                      Dire wolf stats according to the DnD 5e player's handbook
@@ -81,6 +84,7 @@ namespace DungeonSim
                     direWolf.hitMod = 5;
                     direWolf.hpmax = 37;
                     direWolf.curHp = 37;
+                    direWolf.Name = "dire wolf";
                     return direWolf;
 
                 default:

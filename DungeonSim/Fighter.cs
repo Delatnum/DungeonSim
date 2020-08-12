@@ -6,8 +6,6 @@
      */
 public class Fighter : Combatant
 {
-    // Hero name
-    private string name = "";
     // Fighter special actions
 
     public bool secondWind = true; // Can be used once per long/short rest (once in comabt) as a bonus action restores health
@@ -606,18 +604,4 @@ public class Fighter : Combatant
         }
     }
 
-    /*
-        Name Setter
-     */
-    public void setName(String s) 
-    {
-        name = s;
-    }
-    /*
-        Name Getter
-     */
-    public string getName() 
-    {
-        return name;
-    }
 }

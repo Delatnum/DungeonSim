@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonSim
 {
-    class WeaponLibrary
+    public class WeaponLibrary
     {
         public Weapon getWeapon(string weapon)
         {
