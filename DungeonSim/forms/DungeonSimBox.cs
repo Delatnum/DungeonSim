@@ -93,7 +93,8 @@ namespace DungeonSim
 
             // Display damage dealth by party
             Label Lbldamage = new Label();
-            Lbldamage.Text = String.Format("Damage done on round " + roundCount + ": " + round.allyDamage);
+            Lbldamage.AutoSize = true;
+            Lbldamage.Text = String.Format("Damage done on round " + roundCount + ": " + round.allyDamage, Lbldamage.Text);
             Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
             Controls.Add(Lbldamage);
 
