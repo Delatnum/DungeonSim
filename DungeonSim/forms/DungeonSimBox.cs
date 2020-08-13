@@ -75,10 +75,12 @@ namespace DungeonSim
                 foreach (var hero in Encounter.Instance.Party)
                 {
                     round.addCombatant(hero, true);
+                    hero.longRest();
                 }
                 foreach (var monster in Encounter.Instance.Monsters)
                 {
                     round.addCombatant(monster, false);
+                    monster.longRest();
                 }
                 lastRoundRes = round.damageCalculator(10, firstRound);
                 roundCount++;
