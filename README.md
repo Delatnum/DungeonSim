@@ -12,17 +12,3 @@ Definitely the easiest way to run the program. To set it up for building and run
   <li>Open DungeonSim.sln. From here you can see all the code and files</li>
   <li>Click "Debug" -"Start without debugging" This will build the project and run it</li>
 </ol>
-
-<h2 align="center">Setup for Linux</h2>
-<p align="center">**This section is a work in progress**</p>
-<p>For now:
-<ol>
-  <li>Follow the instructions in this link to download mono: https://www.mono-project.com/download/stable/#download-lin</li>
-</ol>
-
-<h2 align="center">Setup for macOS</h2>
-<p align="center">**This section is a work in progress**</p>
-<p>For now:
-<ol>
-  <li>Follow the instructions in this link to download mono: https://www.mono-project.com/docs/getting-started/install/mac/</li>
-</ol>
