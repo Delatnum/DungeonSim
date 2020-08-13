@@ -240,11 +240,11 @@ namespace DungeonTests
 
             RoundCalcer instance = new RoundCalcer();
 
-            // Add hostile
-            instance.addCombatant(monsters.getMonster("Skeleton"), true);
-            instance.addCombatant(monsters.getMonster("Skeleton"), true);
-            instance.addCombatant(monsters.getMonster("Skeleton"), true);
             // Add Ally
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+            instance.addCombatant(monsters.getMonster("Skeleton"), true);
+            // Add Hostile
             instance.addCombatant(monsters.getMonster("Skeleton"), false);
 
             int returnVal = instance.damageCalculator(0, true);
@@ -256,6 +256,113 @@ namespace DungeonTests
 
 
             Assert.IsTrue(returnVal > 0);
+        }
+
+        [TestMethod]
+        public void RoundCalcerTestVictoryWithFighter()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            Weapon aSword = new Weapon("shortsword", "1d6", "slashing");
+            Weapon aBow = new Weapon("shortbow", "1d6", "piercing");
+            aBow.setRanged(20, 60);
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            // Add Ally
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+
+            int returnVal = instance.damageCalculator(0, true);
+
+            while (returnVal == 0)
+            {
+                returnVal = instance.damageCalculator(0, false);
+            }
+
+
+            Assert.IsTrue(returnVal > 0);
+        }
+
+        [TestMethod]
+        public void RoundCalcerTestLossWithFighter()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            Weapon aSword = new Weapon("shortsword", "1d6", "slashing");
+            Weapon aBow = new Weapon("shortbow", "1d6", "piercing");
+            aBow.setRanged(20, 60);
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+
+            // Add Ally
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+
+            int returnVal = instance.damageCalculator(0, true);
+
+            while (returnVal == 0)
+            {
+                returnVal = instance.damageCalculator(0, false);
+            }
+
+
+            Assert.IsTrue(returnVal < 0);
+        }
+
+        [TestMethod]
+        public void RoundCalcerTest100WinsWithFighter()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            Weapon aSword = new Weapon("shortsword", "1d6", "slashing");
+            Weapon aBow = new Weapon("shortbow", "1d6", "piercing");
+            aBow.setRanged(20, 60);
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+
+            // Add Ally
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+
+            double winrate = instance.roundSampler(100);
+
+
+            Assert.IsTrue(winrate >= 0.95 && winrate <= 1);
+        }
+
+        [TestMethod]
+        public void RoundCalcerTest1000WinsWithFighter()
+        {
+            MonsterLibrary monsters = new MonsterLibrary();
+
+            RoundCalcer instance = new RoundCalcer();
+
+            Weapon aSword = new Weapon("shortsword", "1d6", "slashing");
+            Weapon aBow = new Weapon("shortbow", "1d6", "piercing");
+            aBow.setRanged(20, 60);
+
+            // Add hostile
+            instance.addCombatant(monsters.getMonster("Skeleton"), false);
+
+            // Add Ally
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+            instance.addCombatant(new Fighter(16, 14, 15, 11, 12, 10, 30, aSword, aBow), true);
+
+            double winrate = instance.roundSampler(1000);
+
+
+            Assert.IsTrue(winrate >= 0.95 && winrate <= 1);
         }
 
     }

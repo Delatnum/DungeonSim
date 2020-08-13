@@ -149,19 +149,15 @@ public class RoundCalcer
                 {
                     foreach (Combatant t in listEnemies)
                     {
-                        bool newTar = false;
-                        while (!newTar)
+                       
+                        if (t.isDead || t.isUnconcious)
                         {
-                            if (t.isDead || t.isUnconcious)
-                            {
-                                continue;
-                            }
-                            else
-                            {
-                                newTar = true;
-                                c.focusedTar = t;
-                            }
+                            break;
                         }
+                        else
+                        {
+                            c.focusedTar = t;
+                        }                  
 
                     }
                 }
@@ -169,19 +165,14 @@ public class RoundCalcer
                 {
                     foreach (Combatant t in listAllies)
                     {
-                        bool newTar = false;
-                        while (!newTar)
+                        if (t.isDead || t.isUnconcious)
                         {
-                            if (t.isDead || t.isUnconcious)
-                            {
-                                continue;
-                            }
-                            else
-                            {
-                                newTar = true;
-                                c.focusedTar = t;
-                            }
+                            continue;
                         }
+                        else
+                        {
+                            c.focusedTar = t;
+                        }                        
 
                     }
                 }

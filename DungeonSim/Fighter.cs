@@ -22,6 +22,8 @@ public class Fighter : Combatant
     public bool indominatableRankThree = false;
     public bool survivor = false;
 
+    public bool isStabalized = false; // This is only true when the player is both unconcious and no longer making saves
+
     public int level = 1;
 
 
@@ -48,6 +50,9 @@ public class Fighter : Combatant
 
         primaryWeapon = _primary;
         secondaryWeapon = _secondary;
+
+        hpmax = (10 + stats[2] + (level - 1) * (6 + stats[2]));
+        curHp = hpmax;
     }
 
     /*
@@ -78,6 +83,7 @@ public class Fighter : Combatant
         if (curHp <= 0)
         {
             curHp = 0;
+            isUnconcious = true;
             runUnconcious(); // force saves 
             return damageDone;
         }
@@ -262,6 +268,7 @@ public class Fighter : Combatant
                     }
                 }
                 action = false;
+                bonusAction = false;
             }
 
             if (bonusAction && secondWind && (curHp < (hpmax/2))) 
@@ -574,6 +581,7 @@ public class Fighter : Combatant
         // If Unconcious and stabilized the character can't act unless healed above 0
         if (deathSaves >= 3) 
         {
+            this.isStabalized = true;
             return;
         }
 
@@ -591,6 +599,7 @@ public class Fighter : Combatant
         }
         else 
         {
+            isUnconcious = false;
             curHp = 1;
             deathSaves = 0;
             deathFails = 0;
@@ -601,6 +610,7 @@ public class Fighter : Combatant
         if (deathFails == 3) 
         {
             isDead = true;
+            return;
         }
     }
 
