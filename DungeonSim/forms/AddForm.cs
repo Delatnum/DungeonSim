@@ -77,7 +77,7 @@ namespace DungeonSim.forms
         private Combatant AddHeroForm(int curHero, Combatant Hero=null)
         {
             if (Hero == null)
-                Hero = new Fighter(0,0,0,0,0,0,0,new Weapon("shortsword", "1d6", "slashing"), new Weapon("shortsword", "1d6", "slashing"));
+                Hero = new Fighter(10,10,10,10,10,10,10,new Weapon("shortsword", "1d6", "slashing"), new Weapon("shortsword", "1d6", "slashing"));
             TextBox heroName = new TextBox();
             heroName.Text = Hero.Name;
             heroName.Location = new Point(button1.Location.X + 30, button1.Location.Y);
