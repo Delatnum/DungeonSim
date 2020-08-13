@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using OxyPlot.WindowsForms;
 
 namespace DungeonSim
 {
@@ -16,8 +20,10 @@ namespace DungeonSim
         bool firstRound = true; // true if new round starting
         bool fightFinished = false;
         RoundCalcer round = new RoundCalcer();
-        int roundCount = 1;
+        int roundCount = 0;
         int lastRoundRes = 0;
+        LineSeries HeroDamageLine;
+        LineSeries MonsterDamageLine;
         public DungeonSimBox()
         {
             
@@ -27,7 +33,28 @@ namespace DungeonSim
 
         private void DungeonSimBox_Load(object sender, EventArgs e)
         {
-            Properties.Settings.Default["FirstRun"] = true;
+            plotView1.Model = GridLinesHorizontal();
+            plotView1.Model.Title = "Damage Done";
+            plotView2.Model = GridLinesHorizontal();
+            plotView2.Model.Title = "Likelihood of Sucess";
+            HeroDamageLine = new LineSeries
+            {
+                Title = "Damage Done to Monsters",
+                Color = OxyColors.Blue,
+                TextColor = OxyColors.Blue,
+                BrokenLineColor = OxyColors.Blue
+            };
+            MonsterDamageLine = new LineSeries
+            {
+                Title = "Damage done to Heroes",
+                Color = OxyColors.Red,
+                TextColor = OxyColors.Red,
+                BrokenLineColor = OxyColors.Red
+            };
+            plotView1.Model.Series.Add(MonsterDamageLine);
+            plotView1.Model.Series.Add(HeroDamageLine);
+
+
             if ((bool)Properties.Settings.Default["FirstRun"] == true)
             {
                 Properties.Settings.Default["FirstRun"] = false;
@@ -71,22 +98,18 @@ namespace DungeonSim
             if (lastRoundRes < 0 && !fightFinished)
             {
                 roundCount++; // updated label position as an additonal round
-                Label lossLabel = new Label();
-                lossLabel.AutoSize = true;
-                lossLabel.Text = String.Format("The party was defeated!");
-                lossLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
-                Controls.Add(lossLabel);
+                LblLoss.AutoSize = true;
+                LblLoss.Text = String.Format("The party was defeated!");
+                LblLoss.Location = new Point(label5.Location.X, label5.Location.Y + 20 );
                 fightFinished = true;
                 progressBar1.Value = 100; // set fight to finished
                 return;
             } else if (lastRoundRes > 0 && !fightFinished) 
             {
                 roundCount++; // updated label position as an additonal round
-                Label winLabel = new Label();
-                winLabel.AutoSize = true;
-                winLabel.Text = String.Format("The monsters were defeated!");
-                winLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
-                Controls.Add(winLabel);
+                LblLoss.AutoSize = true;
+                LblLoss.Text = String.Format("The monsters were defeated!");
+                LblLoss.Location = new Point(label5.Location.X, label5.Location.Y + 20 );
                 fightFinished = true;
                 progressBar1.Value = 100; // set fight to finished
                 return;
@@ -96,6 +119,7 @@ namespace DungeonSim
              */
             if (firstRound)
             {
+               
                 foreach (var hero in Encounter.Instance.Party)
                 {
                     round.addCombatant(hero, true);
@@ -109,12 +133,33 @@ namespace DungeonSim
                 lastRoundRes = round.damageCalculator(10, firstRound);
                 roundCount++;                
                 firstRound = false;
+
+
+                
+                MonsterDamageLine.Points.Add(new DataPoint(roundCount, round.enemyDamage));
+                plotView1.Model.Axes[0].Maximum = plotView1.Model.Axes[0].Maximum > round.enemyDamage ? plotView1.Model.Axes[0].Maximum : round.enemyDamage + 5;
+                plotView1.Model.InvalidatePlot(true);
+
+                HeroDamageLine.Points.Add(new DataPoint(roundCount, round.allyDamage));
+                plotView1.Model.Axes[0].Maximum = plotView1.Model.Axes[0].Maximum > round.allyDamage ? plotView1.Model.Axes[0].Maximum : round.allyDamage + 5;
+                plotView1.Model.InvalidatePlot(true);
             } else 
             {
                 lastRoundRes = round.damageCalculator(0, firstRound);
                 roundCount++;
+
+                
             }
 
+            LblLoss.Text = String.Format(" Round " + roundCount.ToString() + " Damage - Heroes :" + round.allyDamage.ToString() + " Monsters: " + round.enemyDamage.ToString());
+            LblLoss.Location = new Point(label5.Location.X, label5.Location.Y + 20);
+            MonsterDamageLine.Points.Add(new DataPoint(roundCount, round.enemyDamage));
+            plotView1.Model.Axes[0].Maximum = plotView1.Model.Axes[0].Maximum > round.enemyDamage ? plotView1.Model.Axes[0].Maximum : round.enemyDamage+5;
+            plotView1.Model.InvalidatePlot(true);
+
+            HeroDamageLine.Points.Add(new DataPoint(roundCount, round.allyDamage));
+            plotView1.Model.Axes[0].Maximum = plotView1.Model.Axes[0].Maximum > round.allyDamage ? plotView1.Model.Axes[0].Maximum : round.allyDamage+5;
+            plotView1.Model.InvalidatePlot(true);
             /*
                     Update progress bar
             */
@@ -126,13 +171,7 @@ namespace DungeonSim
             {
                 progressBar1.Value = Convert.ToInt32((1 - round.monsterPercent()) * 100);
             }
-
-            // Display damage dealth by party
-            Label Lbldamage = new Label();
-            Lbldamage.AutoSize = true;
-            Lbldamage.Text = String.Format("Damage done on round " + roundCount + ": " + round.allyDamage);
-            Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
-            Controls.Add(Lbldamage);
+            
 
         }
 
@@ -141,6 +180,8 @@ namespace DungeonSim
             Encounter.Instance.Party.Clear();
             firstRound = true;
             roundCount = 1;
+            fightFinished = false;
+            lastRoundRes = 0;
         }
 
         private void BtnClearMonsters_Click(object sender, EventArgs e)
@@ -148,11 +189,50 @@ namespace DungeonSim
             Encounter.Instance.Monsters.Clear();
             firstRound = true;
             roundCount = 1;
+            fightFinished = false;
+            lastRoundRes = 0;
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void plotView2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public static PlotModel GridLinesHorizontal()
+        {
+            var plotModel = new PlotModel();
+            plotModel.Title = "";
+            var linearAxis1 = new LinearAxis();
+
+            linearAxis1.MajorGridlineStyle = LineStyle.Solid;
+            linearAxis1.MinorGridlineStyle = LineStyle.Dot;
+            linearAxis1.Maximum = 25;
+            linearAxis1.Minimum = 0;
+            plotModel.Axes.Add(linearAxis1);
+
+
+            return plotModel;
+
+        }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            
+            DungeonSimBox reset = new DungeonSimBox();
+            reset.FormClosed += (s, args) => Close();
+            reset.Load += (s, args) => Hide();
+            reset.Show();
+            Encounter.Instance.Party.Clear();
+            Encounter.Instance.Monsters.Clear();
         }
     }
 }

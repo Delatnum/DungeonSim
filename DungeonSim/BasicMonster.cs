@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 public class BasicMonster : Combatant
 {
     public int hitMod = 0; // some monsters have increase hit modifiers to help their chance to hit (zero by default)
-
+    
     public BasicMonster(int STR, int DEX, int CON, int INT, int WIS, int CHA, int _movement, int AC, Weapon _primary, Weapon _secondary)
     {
         
@@ -25,7 +25,7 @@ public class BasicMonster : Combatant
     stats[3] = INT;
     stats[4] = WIS;
     stats[5] = CHA;
-
+    this.AC = AC;
         
     movement = _movement;
 

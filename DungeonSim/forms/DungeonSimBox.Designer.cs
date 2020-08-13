@@ -1,4 +1,4 @@
-﻿
+﻿using System.Drawing;
 namespace DungeonSim
 {
     partial class DungeonSimBox
@@ -35,17 +35,17 @@ namespace DungeonSim
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.AddPartyButton = new System.Windows.Forms.Button();
             this.plotView1 = new OxyPlot.WindowsForms.PlotView();
-            this.label2 = new System.Windows.Forms.Label();
             this.plotView2 = new OxyPlot.WindowsForms.PlotView();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.BtnSimTurn = new System.Windows.Forms.Button();
             this.BtnClearParty = new System.Windows.Forms.Button();
             this.BtnClearMonsters = new System.Windows.Forms.Button();
+            this.LblLoss = new System.Windows.Forms.Label();
+            this.BtnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +54,7 @@ namespace DungeonSim
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(168, 196);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 20);
+            this.label1.Size = new System.Drawing.Size(87, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Party State";
             // 
@@ -103,15 +103,6 @@ namespace DungeonSim
             this.plotView1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1127, 153);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Statistics Plot";
-            // 
             // plotView2
             // 
             this.plotView2.BackColor = System.Drawing.Color.SkyBlue;
@@ -124,13 +115,14 @@ namespace DungeonSim
             this.plotView2.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.plotView2.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView2.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            this.plotView2.Click += new System.EventHandler(this.plotView2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(505, 196);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 20);
+            this.label3.Size = new System.Drawing.Size(124, 18);
             this.label3.TabIndex = 11;
             this.label3.Text = "Monsters States";
             // 
@@ -156,7 +148,7 @@ namespace DungeonSim
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(323, 533);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(203, 30);
+            this.label4.Size = new System.Drawing.Size(116, 18);
             this.label4.TabIndex = 14;
             this.label4.Text = "Battle Progress";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -166,18 +158,9 @@ namespace DungeonSim
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(335, 641);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 20);
+            this.label5.Size = new System.Drawing.Size(120, 18);
             this.label5.TabIndex = 15;
             this.label5.Text = "Previous Events";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1138, 435);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(319, 20);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Probabilities Plot (More specific later)";
             // 
             // BtnSimTurn
             // 
@@ -209,24 +192,42 @@ namespace DungeonSim
             this.BtnClearMonsters.UseVisualStyleBackColor = true;
             this.BtnClearMonsters.Click += new System.EventHandler(this.BtnClearMonsters_Click);
             // 
+            // LblLoss
+            // 
+            this.LblLoss.AutoSize = true;
+            this.LblLoss.Location = new System.Drawing.Point(335, 678);
+            this.LblLoss.Name = "LblLoss";
+            this.LblLoss.Size = new System.Drawing.Size(0, 23);
+            this.LblLoss.TabIndex = 20;
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.Location = new System.Drawing.Point(297, 755);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(181, 46);
+            this.BtnReset.TabIndex = 21;
+            this.BtnReset.Text = "Reset Sim";
+            this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
             // DungeonSimBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1535, 837);
+            this.Controls.Add(this.BtnReset);
+            this.Controls.Add(this.LblLoss);
             this.Controls.Add(this.BtnClearMonsters);
             this.Controls.Add(this.BtnClearParty);
             this.Controls.Add(this.BtnSimTurn);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.plotView2);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.plotView1);
             this.Controls.Add(this.AddPartyButton);
             this.Controls.Add(this.pictureBox1);
@@ -254,17 +255,17 @@ namespace DungeonSim
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button AddPartyButton;
         private OxyPlot.WindowsForms.PlotView plotView1;
-        private System.Windows.Forms.Label label2;
         private OxyPlot.WindowsForms.PlotView plotView2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnSimTurn;
         private System.Windows.Forms.Button BtnClearParty;
         private System.Windows.Forms.Button BtnClearMonsters;
+        private System.Windows.Forms.Label LblLoss;
+        private System.Windows.Forms.Button BtnReset;
     }
 }
 
