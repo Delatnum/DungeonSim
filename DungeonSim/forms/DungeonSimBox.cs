@@ -32,24 +32,10 @@ namespace DungeonSim
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void AddPartyButton_Click(object sender, EventArgs e)
@@ -60,16 +46,6 @@ namespace DungeonSim
             FormAddParty.Show();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddMonsterButton_Click(object sender, EventArgs e)
         {
             AddForm FormAddMonster = new AddForm();
@@ -77,18 +53,8 @@ namespace DungeonSim
             FormAddMonster.Text = "Add Monsters";
             FormAddMonster.Show();
         }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void plotView1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void BtnSimTurnClick(object sender, EventArgs e)
         {
             RoundCalcer round = new RoundCalcer();
             foreach (var hero in Encounter.Instance.Party)
@@ -101,10 +67,23 @@ namespace DungeonSim
             }
             int damage = round.damageCalculator(10, true);
             Encounter.Instance.Round++;
+
+            // Display damage
             Label Lbldamage = new Label();
             Lbldamage.Text = $"Damage done on round {Encounter.Instance.Round}: {damage}";
             Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * Encounter.Instance.Round);
+            Controls.Add(Lbldamage);
 
+        }
+
+        private void BtnClearParty_Click(object sender, EventArgs e)
+        {
+            Encounter.Instance.Party.Clear();
+        }
+
+        private void BtnClearMonsters_Click(object sender, EventArgs e)
+        {
+            Encounter.Instance.Monsters.Clear();
         }
     }
 }

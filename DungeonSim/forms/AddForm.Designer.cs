@@ -80,7 +80,6 @@ namespace DungeonSim.forms
             this.LblCon.Size = new System.Drawing.Size(38, 17);
             this.LblCon.TabIndex = 3;
             this.LblCon.Text = "CON";
-            this.LblCon.Click += new System.EventHandler(this.label3_Click);
             // 
             // LblInt
             // 
@@ -99,7 +98,6 @@ namespace DungeonSim.forms
             this.LblWis.Size = new System.Drawing.Size(33, 17);
             this.LblWis.TabIndex = 5;
             this.LblWis.Text = "WIS";
-            this.LblWis.Click += new System.EventHandler(this.label5_Click);
             // 
             // LblCha
             // 
@@ -109,7 +107,6 @@ namespace DungeonSim.forms
             this.LblCha.Size = new System.Drawing.Size(36, 17);
             this.LblCha.TabIndex = 6;
             this.LblCha.Text = "CHA";
-            this.LblCha.Click += new System.EventHandler(this.LblCha_Click);
             // 
             // LblMove
             // 
@@ -146,7 +143,6 @@ namespace DungeonSim.forms
             this.LblSecondary.Size = new System.Drawing.Size(133, 17);
             this.LblSecondary.TabIndex = 10;
             this.LblSecondary.Text = "Secondary Weapon";
-            this.LblSecondary.Click += new System.EventHandler(this.label10_Click);
             // 
             // LblName
             // 
@@ -156,7 +152,6 @@ namespace DungeonSim.forms
             this.LblName.Size = new System.Drawing.Size(45, 17);
             this.LblName.TabIndex = 11;
             this.LblName.Text = "Name";
-            this.LblName.Click += new System.EventHandler(this.label1_Click);
             // 
             // AddForm
             // 

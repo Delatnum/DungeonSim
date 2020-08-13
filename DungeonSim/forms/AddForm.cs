@@ -40,31 +40,6 @@ namespace DungeonSim.forms
             button1.Location = new Point(button1.Location.X, button1.Location.Y + 40);
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LblCha_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddForm_Load(object sender, EventArgs e)
         {
             int partySize = 0;

@@ -43,7 +43,9 @@ namespace DungeonSim
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnSimTurn = new System.Windows.Forms.Button();
+            this.BtnClearParty = new System.Windows.Forms.Button();
+            this.BtnClearMonsters = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +57,6 @@ namespace DungeonSim
             this.label1.Size = new System.Drawing.Size(87, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Party State";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ExitButton
             // 
@@ -78,7 +79,6 @@ namespace DungeonSim
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // AddPartyButton
             // 
@@ -102,7 +102,6 @@ namespace DungeonSim
             this.plotView1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.plotView1.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView1.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            this.plotView1.Click += new System.EventHandler(this.plotView1_Click);
             // 
             // label2
             // 
@@ -112,7 +111,6 @@ namespace DungeonSim
             this.label2.Size = new System.Drawing.Size(104, 18);
             this.label2.TabIndex = 9;
             this.label2.Text = "Statistics Plot";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // plotView2
             // 
@@ -135,7 +133,6 @@ namespace DungeonSim
             this.label3.Size = new System.Drawing.Size(124, 18);
             this.label3.TabIndex = 11;
             this.label3.Text = "Monsters States";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button2
             // 
@@ -162,7 +159,6 @@ namespace DungeonSim
             this.label4.Size = new System.Drawing.Size(116, 18);
             this.label4.TabIndex = 14;
             this.label4.Text = "Battle Progress";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -182,15 +178,35 @@ namespace DungeonSim
             this.label6.TabIndex = 16;
             this.label6.Text = "Probabilities Plot (More specific later)";
             // 
-            // button1
+            // BtnSimTurn
             // 
-            this.button1.Location = new System.Drawing.Point(317, 475);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Simulate Turn";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnSimTurn.Location = new System.Drawing.Point(317, 475);
+            this.BtnSimTurn.Name = "BtnSimTurn";
+            this.BtnSimTurn.Size = new System.Drawing.Size(132, 23);
+            this.BtnSimTurn.TabIndex = 17;
+            this.BtnSimTurn.Text = "Simulate Turn";
+            this.BtnSimTurn.UseVisualStyleBackColor = true;
+            this.BtnSimTurn.Click += new System.EventHandler(this.BtnSimTurnClick);
+            // 
+            // BtnClearParty
+            // 
+            this.BtnClearParty.Location = new System.Drawing.Point(158, 292);
+            this.BtnClearParty.Name = "BtnClearParty";
+            this.BtnClearParty.Size = new System.Drawing.Size(119, 25);
+            this.BtnClearParty.TabIndex = 18;
+            this.BtnClearParty.Text = "Clear Party";
+            this.BtnClearParty.UseVisualStyleBackColor = true;
+            this.BtnClearParty.Click += new System.EventHandler(this.BtnClearParty_Click);
+            // 
+            // BtnClearMonsters
+            // 
+            this.BtnClearMonsters.Location = new System.Drawing.Point(508, 292);
+            this.BtnClearMonsters.Name = "BtnClearMonsters";
+            this.BtnClearMonsters.Size = new System.Drawing.Size(121, 25);
+            this.BtnClearMonsters.TabIndex = 19;
+            this.BtnClearMonsters.Text = "Clear Monsters";
+            this.BtnClearMonsters.UseVisualStyleBackColor = true;
+            this.BtnClearMonsters.Click += new System.EventHandler(this.BtnClearMonsters_Click);
             // 
             // DungeonSimBox
             // 
@@ -199,7 +215,9 @@ namespace DungeonSim
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1535, 837);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnClearMonsters);
+            this.Controls.Add(this.BtnClearParty);
+            this.Controls.Add(this.BtnSimTurn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -243,7 +261,9 @@ namespace DungeonSim
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnSimTurn;
+        private System.Windows.Forms.Button BtnClearParty;
+        private System.Windows.Forms.Button BtnClearMonsters;
     }
 }
 
