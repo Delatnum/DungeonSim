@@ -54,7 +54,7 @@ namespace DungeonSim
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(168, 196);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 18);
+            this.label1.Size = new System.Drawing.Size(101, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Party State";
             // 
@@ -108,7 +108,7 @@ namespace DungeonSim
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(1127, 153);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 18);
+            this.label2.Size = new System.Drawing.Size(124, 20);
             this.label2.TabIndex = 9;
             this.label2.Text = "Statistics Plot";
             // 
@@ -130,7 +130,7 @@ namespace DungeonSim
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(505, 196);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 18);
+            this.label3.Size = new System.Drawing.Size(142, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "Monsters States";
             // 
@@ -156,16 +156,17 @@ namespace DungeonSim
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(323, 533);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 18);
+            this.label4.Size = new System.Drawing.Size(203, 30);
             this.label4.TabIndex = 14;
             this.label4.Text = "Battle Progress";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(335, 641);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 18);
+            this.label5.Size = new System.Drawing.Size(139, 20);
             this.label5.TabIndex = 15;
             this.label5.Text = "Previous Events";
             // 
@@ -174,7 +175,7 @@ namespace DungeonSim
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(1138, 435);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(264, 18);
+            this.label6.Size = new System.Drawing.Size(319, 20);
             this.label6.TabIndex = 16;
             this.label6.Text = "Probabilities Plot (More specific later)";
             // 
@@ -210,7 +211,7 @@ namespace DungeonSim
             // 
             // DungeonSimBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;

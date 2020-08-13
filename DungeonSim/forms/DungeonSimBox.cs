@@ -13,6 +13,10 @@ namespace DungeonSim
 {
     public partial class DungeonSimBox : Form
     {
+        bool firstRound = true; // true if new round starting
+        RoundCalcer round = new RoundCalcer();
+        int roundCount = 1;
+        int lastRoundRes = 0;
         public DungeonSimBox()
         {
             
@@ -56,22 +60,39 @@ namespace DungeonSim
         
         private void BtnSimTurnClick(object sender, EventArgs e)
         {
-            RoundCalcer round = new RoundCalcer();
-            foreach (var hero in Encounter.Instance.Party)
+            /*
+                Will not simulate another round if the Encounter has no monsters, no heroes, or the simulator has determined a result
+             */
+            if (Encounter.Instance.Party.Count == 0 || Encounter.Instance.Monsters.Count == 0 || lastRoundRes != 0) 
             {
-                round.addCombatant(hero, true);
+                return;
             }
-            foreach (var monster in Encounter.Instance.Monsters)
+            /*
+                Add heroes and monsters to the roundcalcer
+             */
+            if (firstRound)
             {
-                round.addCombatant(monster, false);
+                foreach (var hero in Encounter.Instance.Party)
+                {
+                    round.addCombatant(hero, true);
+                }
+                foreach (var monster in Encounter.Instance.Monsters)
+                {
+                    round.addCombatant(monster, false);
+                }
+                lastRoundRes = round.damageCalculator(10, firstRound);
+                roundCount++;
+                firstRound = false;
+            } else 
+            {
+                lastRoundRes = round.damageCalculator(0, firstRound);
+                roundCount++;
             }
-            int damage = round.damageCalculator(10, true);
-            Encounter.Instance.Round++;
 
-            // Display damage
+            // Display damage dealth by party
             Label Lbldamage = new Label();
-            Lbldamage.Text = $"Damage done on round {Encounter.Instance.Round}: {damage}";
-            Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * Encounter.Instance.Round);
+            Lbldamage.Text = String.Format("Damage done on round " + roundCount + ": " + round.allyDamage);
+            Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
             Controls.Add(Lbldamage);
 
         }
@@ -79,11 +100,20 @@ namespace DungeonSim
         private void BtnClearParty_Click(object sender, EventArgs e)
         {
             Encounter.Instance.Party.Clear();
+            firstRound = true;
+            roundCount = 1;
         }
 
         private void BtnClearMonsters_Click(object sender, EventArgs e)
         {
             Encounter.Instance.Monsters.Clear();
+            firstRound = true;
+            roundCount = 1;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
