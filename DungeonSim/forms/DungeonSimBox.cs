@@ -14,6 +14,7 @@ namespace DungeonSim
     public partial class DungeonSimBox : Form
     {
         bool firstRound = true; // true if new round starting
+        bool fightFinished = false;
         RoundCalcer round = new RoundCalcer();
         int roundCount = 1;
         int lastRoundRes = 0;
@@ -63,8 +64,29 @@ namespace DungeonSim
             /*
                 Will not simulate another round if the Encounter has no monsters, no heroes, or the simulator has determined a result
              */
-            if (Encounter.Instance.Party.Count == 0 || Encounter.Instance.Monsters.Count == 0 || lastRoundRes != 0) 
+            if (Encounter.Instance.Party.Count == 0 || Encounter.Instance.Monsters.Count == 0 || fightFinished)
             {
+                return;
+            }
+            if (lastRoundRes < 0 && !fightFinished)
+            {
+                roundCount++;
+                Label lossLabel = new Label();
+                lossLabel.AutoSize = true;
+                lossLabel.Text = String.Format("The party was defeated!");
+                lossLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
+                Controls.Add(lossLabel);
+                fightFinished = true;
+                return;
+            } else if (lastRoundRes > 0 && !fightFinished) 
+            {
+                roundCount++;
+                Label winLabel = new Label();
+                winLabel.AutoSize = true;
+                winLabel.Text = String.Format("The monsters were defeated!");
+                winLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
+                Controls.Add(winLabel);
+                fightFinished = true;
                 return;
             }
             /*
@@ -94,7 +116,7 @@ namespace DungeonSim
             // Display damage dealth by party
             Label Lbldamage = new Label();
             Lbldamage.AutoSize = true;
-            Lbldamage.Text = String.Format("Damage done on round " + roundCount + ": " + round.allyDamage, Lbldamage.Text);
+            Lbldamage.Text = String.Format("Damage done on round " + roundCount + ": " + round.allyDamage);
             Lbldamage.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
             Controls.Add(Lbldamage);
 
