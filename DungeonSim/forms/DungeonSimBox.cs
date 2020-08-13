@@ -70,25 +70,25 @@ namespace DungeonSim
             }
             if (lastRoundRes < 0 && !fightFinished)
             {
-                roundCount++;
+                roundCount++; // updated label position as an additonal round
                 Label lossLabel = new Label();
                 lossLabel.AutoSize = true;
                 lossLabel.Text = String.Format("The party was defeated!");
                 lossLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
                 Controls.Add(lossLabel);
                 fightFinished = true;
-                progressBar1.Value = 100;
+                progressBar1.Value = 100; // set fight to finished
                 return;
             } else if (lastRoundRes > 0 && !fightFinished) 
             {
-                roundCount++;
+                roundCount++; // updated label position as an additonal round
                 Label winLabel = new Label();
                 winLabel.AutoSize = true;
                 winLabel.Text = String.Format("The monsters were defeated!");
                 winLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
                 Controls.Add(winLabel);
                 fightFinished = true;
-                progressBar1.Value = 100;
+                progressBar1.Value = 100; // set fight to finished
                 return;
             }
             /*
