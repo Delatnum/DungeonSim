@@ -77,6 +77,7 @@ namespace DungeonSim
                 lossLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
                 Controls.Add(lossLabel);
                 fightFinished = true;
+                progressBar1.Value = 100;
                 return;
             } else if (lastRoundRes > 0 && !fightFinished) 
             {
@@ -87,6 +88,7 @@ namespace DungeonSim
                 winLabel.Location = new Point(label5.Location.X, label5.Location.Y + 20 * roundCount);
                 Controls.Add(winLabel);
                 fightFinished = true;
+                progressBar1.Value = 100;
                 return;
             }
             /*
@@ -105,12 +107,24 @@ namespace DungeonSim
                     monster.longRest();
                 }
                 lastRoundRes = round.damageCalculator(10, firstRound);
-                roundCount++;
+                roundCount++;                
                 firstRound = false;
             } else 
             {
                 lastRoundRes = round.damageCalculator(0, firstRound);
                 roundCount++;
+            }
+
+            /*
+                    Update progress bar
+            */
+            if ((1 - round.partyPercent()) >= (1 - round.monsterPercent()))
+            {
+                progressBar1.Value = Convert.ToInt32((1 - round.partyPercent()) * 100);
+            }
+            else
+            {
+                progressBar1.Value = Convert.ToInt32((1 - round.monsterPercent()) * 100);
             }
 
             // Display damage dealth by party
