@@ -36,7 +36,7 @@ namespace DungeonSim
         private void DungeonSimBox_Load(object sender, EventArgs e)
         {
             plotView1.Model = GridLinesHorizontal();
-            plotView1.Model.Title = "Total Damage Done Per Round";
+            plotView1.Model.Title = "Total Damage Done";
             plotView2.Model = GridLinesHorizontal();
             plotView2.Model.Axes[0].Maximum = 100;
             plotView2.Model.Title = "Probabilty of Total Party Kill";
