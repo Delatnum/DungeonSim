@@ -112,6 +112,7 @@ namespace DungeonSim
             this.plotView2.Size = new System.Drawing.Size(573, 262);
             this.plotView2.TabIndex = 10;
             this.plotView2.Text = "plotView2";
+            this.plotView2.Visible = false;
             this.plotView2.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.plotView2.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.plotView2.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
@@ -197,7 +198,7 @@ namespace DungeonSim
             this.LblLoss.AutoSize = true;
             this.LblLoss.Location = new System.Drawing.Point(335, 678);
             this.LblLoss.Name = "LblLoss";
-            this.LblLoss.Size = new System.Drawing.Size(0, 23);
+            this.LblLoss.Size = new System.Drawing.Size(0, 18);
             this.LblLoss.TabIndex = 20;
             // 
             // BtnReset
@@ -227,12 +228,12 @@ namespace DungeonSim
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.plotView2);
             this.Controls.Add(this.plotView1);
             this.Controls.Add(this.AddPartyButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.plotView2);
             this.Font = new System.Drawing.Font("MS Reference Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
