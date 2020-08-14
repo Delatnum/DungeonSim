@@ -22,6 +22,8 @@ namespace DungeonSim
         RoundCalcer round = new RoundCalcer();
         int roundCount = 0;
         int lastRoundRes = 0;
+        int lastRoundAllyDamage = 0;
+        int lastRoundMonsterDamage = 0;
         LineSeries HeroDamageLine;
         LineSeries MonsterDamageLine;
         public DungeonSimBox()
@@ -34,9 +36,10 @@ namespace DungeonSim
         private void DungeonSimBox_Load(object sender, EventArgs e)
         {
             plotView1.Model = GridLinesHorizontal();
-            plotView1.Model.Title = "Damage Done";
+            plotView1.Model.Title = "Total Damage Done Per Round";
             plotView2.Model = GridLinesHorizontal();
-            plotView2.Model.Title = "Likelihood of Sucess";
+            plotView2.Model.Axes[0].Maximum = 100;
+            plotView2.Model.Title = "Probabilty of Total Party Kill";
             HeroDamageLine = new LineSeries
             {
                 Title = "Damage Done to Monsters",
@@ -150,8 +153,11 @@ namespace DungeonSim
 
                 
             }
-
-            LblLoss.Text = String.Format(" Round " + roundCount.ToString() + " Damage - Heroes :" + round.allyDamage.ToString() + " Monsters: " + round.enemyDamage.ToString());
+            int roundAllyDamage = round.allyDamage - lastRoundAllyDamage;
+            int roundMonsterDamage = round.enemyDamage - lastRoundMonsterDamage;
+            LblLoss.Text = String.Format(" Round " + roundCount.ToString() + " Damage Done - Heroes :" + roundAllyDamage.ToString() + " Monsters: " + roundMonsterDamage.ToString());
+            lastRoundAllyDamage += roundAllyDamage;
+            lastRoundMonsterDamage += roundMonsterDamage;
             LblLoss.Location = new Point(label5.Location.X, label5.Location.Y + 20);
             MonsterDamageLine.Points.Add(new DataPoint(roundCount, round.enemyDamage));
             plotView1.Model.Axes[0].Maximum = plotView1.Model.Axes[0].Maximum > round.enemyDamage ? plotView1.Model.Axes[0].Maximum : round.enemyDamage+5;
